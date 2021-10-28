@@ -9,7 +9,7 @@ class Story_manager:
 		# creates stories table if it does not exist
 		self.c.execute("CREATE TABLE IF NOT EXISTS stories(story PRIMARY KEY)")
 
-	def create_story(self, story:str) -> bool:
+	def create_story(self, story:str, starter:str) -> bool:
 		'''Creates a story and returns if successful'''
 		# adds a story to the list
 		try: # if an error happens, it will catch it and say something is wrong with the story creation
@@ -25,6 +25,18 @@ class Story_manager:
 
 	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
 		'''Inserts an entry into the story. Notes user.'''
+		pass
+
+	def get_all_stories(self) -> tuple:
+		'''Returns a tuple of all the stories.'''
+		pass
+
+	def get_user_contributions(self, usr:str) -> tuple:
+		'''Returns a tuple of all the stories the user has contributed to.'''
+		pass
+
+	def get_story(self, story:str) -> str:
+		'''Returns the full text of a story'''
 		pass
 
 	def __del__(self):
