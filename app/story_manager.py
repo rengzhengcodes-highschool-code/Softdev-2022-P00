@@ -19,6 +19,14 @@ class Story_manager:
 			return False
 		# TODO: We should make an exception for overlapping story titles and invalid titles
 
+	def get_last_entry(self, story:str) -> str:
+		'''Gets the latest entry in a story'''
+		pass
+
+	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
+		'''Inserts an entry into the story. Notes user.'''
+		pass
+
 	def __del__(self):
 		self.db.commit()
 		self.db.close()
