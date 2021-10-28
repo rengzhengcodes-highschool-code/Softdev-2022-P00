@@ -6,4 +6,6 @@ class Story_manager:
 		self.DB_FILE = db_file
 		self.db = sqlite3.connect(self.DB_FILE)
 		self.c = self.db.cursor()
-		
+
+	def create_story(self, title:str):
+			
