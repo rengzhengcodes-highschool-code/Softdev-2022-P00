@@ -15,7 +15,8 @@ class Story_manager:
 		try: # if an error happens, it will catch it and say something is wrong with the story creation
 			self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,))
 			return True
-		except: # if it does not it won't
+		except Exception as e: # if it does not it won't
+			print(e)
 			return False
 		# TODO: We should make an exception for overlapping story titles and invalid titles
 
@@ -27,9 +28,11 @@ class Story_manager:
 		'''Inserts an entry into the story. Notes user.'''
 		pass
 
-	def get_all_stories(self) -> tuple:
+	def get_catalog(self) -> tuple:
 		'''Returns a tuple of all the stories.'''
-		pass
+		self.c.execute("SELECT * FROM stories")
+		catalog = tuple(self.c.fetchall())
+		print(catalog)
 
 	def get_user_contributions(self, usr:str) -> tuple:
 		'''Returns a tuple of all the stories the user has contributed to.'''
@@ -45,4 +48,6 @@ class Story_manager:
 
 if __name__ == "__main__":
 	sm = Story_manager()
-	sm.create_story("test")
+	sm.create_story("test", "testy test")
+	sm.create_story("test2", "testy test")
+	sm.get_catalog()
