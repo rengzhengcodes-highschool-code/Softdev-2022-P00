@@ -9,7 +9,7 @@ class Story_manager:
 		# creates stories table if it does not exist
 		self.c.execute("CREATE TABLE IF NOT EXISTS stories(story PRIMARY KEY)")
 		#creates contributions table if it does not exist
-		self.c.execute()
+		self.c.execute("CREATE TABLE IF NOT EXISTS contributions(user TEXT NOT NULL, story TEXT NOT NULL, addition TEXT NOT NULL, order NUMBER NOT NULL)")
 
 	def create_story(self, creator:str, story:str, starter:str) -> bool:
 		'''Creates a story and returns if successful
