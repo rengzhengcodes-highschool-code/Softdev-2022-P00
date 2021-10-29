@@ -8,12 +8,18 @@ class Story_manager:
 		self.c = self.db.cursor()
 		# creates stories table if it does not exist
 		self.c.execute("CREATE TABLE IF NOT EXISTS stories(story PRIMARY KEY)")
+		#creates contributions table if it does not exist
+		self.c.execute()
 
-	def create_story(self, story:str, starter:str) -> bool:
-		'''Creates a story and returns if successful'''
+	def create_story(self, creator:str, story:str, starter:str) -> bool:
+		'''Creates a story and returns if successful
+		creator: creator of the story
+		story: title of the story
+		starter: starting prompt of the story'''
 		# adds a story to the list
 		try: # if an error happens, it will catch it and say something is wrong with the story creation
 			self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,))
+			self.c.execute("INSERT INTO ")
 			return True
 		except Exception as e: # if it does not it won't
 			print(e)
