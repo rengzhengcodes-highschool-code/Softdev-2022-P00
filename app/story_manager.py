@@ -7,9 +7,9 @@ class Story_manager:
 		self.db = sqlite3.connect(self.DB_FILE)
 		self.c = self.db.cursor()
 		# creates stories table if it does not exist
-		self.c.execute("CREATE TABLE IF NOT EXISTS stories(story PRIMARY KEY)")
+		self.c.execute("CREATE TABLE IF NOT EXISTS stories(story PRIMARY KEY);")
 		#creates contributions table if it does not exist
-		self.c.execute("CREATE TABLE IF NOT EXISTS contributions(user TEXT NOT NULL, story TEXT NOT NULL, addition TEXT NOT NULL, order NUMBER NOT NULL)")
+		self.c.execute("CREATE TABLE IF NOT EXISTS contributions(contributor TEXT NOT NULL, story TEXT NOT NULL, addition TEXT NOT NULL, ordinal INTEGER NOT NULL);")
 
 	def create_story(self, creator:str, story:str, starter:str) -> bool:
 		'''Creates a story and returns if successful
