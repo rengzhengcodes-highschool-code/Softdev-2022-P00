@@ -17,12 +17,16 @@ class Story_manager:
 		story: title of the story
 		starter: starting prompt of the story'''
 		# adds a story to the list
-		try: # if an error happens, it will catch it and say something is wrong with the story creation
-			self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,))
-			self.c.execute("INSERT INTO contributions(contributor, story, addition, ordinal) VALUES(?, ?, ?, ?)", (creator, story, starter, 0))
-			return True
-		except Exception as e: # if it does not it won't
-			print(e)
+		if story not in self.get_catalog():
+			try: # if an error happens, it will catch it and say something is wrong with the story creation
+				self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,))
+				self.c.execute("INSERT INTO contributions(contributor, story, addition, ordinal) VALUES(?, ?, ?, ?)", (creator, story, starter, 0))
+				return True
+			except Exception as e: # if it does not it won't
+				print(e)
+				return False
+		else:
+			print("Attempted to put story with same title as another")
 			return False
 		# TODO: We should make an exception for overlapping story titles and invalid titles
 
@@ -39,7 +43,13 @@ class Story_manager:
 	def get_catalog(self) -> tuple:
 		'''Returns a tuple of all the stories.'''
 		self.c.execute("SELECT * FROM stories")
-		catalog = tuple(self.c.fetchall())
+		catalog_tuple = tuple(self.c.fetchall())
+
+		catalog = list()
+		for tup in catalog_tuple: #removes story title from tuple so that it can be read more easily
+			catalog.append(tup[0])
+		catalog = tuple(catalog)
+
 		return catalog
 
 	def get_user_contributions(self, usr:str) -> tuple:
