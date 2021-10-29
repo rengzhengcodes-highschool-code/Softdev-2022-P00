@@ -19,7 +19,7 @@ class Story_manager:
 		# adds a story to the list
 		try: # if an error happens, it will catch it and say something is wrong with the story creation
 			self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,))
-			self.c.execute("INSERT INTO ")
+			self.c.execute("INSERT INTO contributions(contributor, story, addition, ordinal) VALUES(?, ?, ?, ?)", (creator, story, starter, 0))
 			return True
 		except Exception as e: # if it does not it won't
 			print(e)
@@ -54,6 +54,6 @@ class Story_manager:
 
 if __name__ == "__main__":
 	sm = Story_manager()
-	sm.create_story("test", "testy test")
-	sm.create_story("test2", "testy test")
+	sm.create_story("test", "admin", "testy test")
+	sm.create_story("test2", "admin", "testy test")
 	sm.get_catalog()
