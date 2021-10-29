@@ -1,9 +1,7 @@
 rengZ -- 2021-10-28 8:00 - created repo with code from k17. No errors discovered so far because code does not exist or has been verified before.
 rengZ -- 2021-10-28 8:19 - brought repo in compliance with format. No errors because everything is empty.
-<<<<<<< HEAD
 juliaN - 2021-10-28 8:38 - templates directory moved to correct location and some new html files added.
-=======
 rengZ -- 2021-10-28 15:19 - Added boilerplate to better visualize what functions are needed for the final product.
 rengZ -- 2021-10-28 15:32 - Added way to get manifest of all stories based on uncritiqued portion of the design documnent.
 rengZ -- 2021-10-28 8:11 - Fixed design document. Fixed the main critiques of lacking a registration page. Fixed other main critique of separate tables for stories being unmaintainable + unsecure. Clarified functionality of tables.
->>>>>>> 9558845a97346022c3a8d8b156df7acd5a6b2bf5
+juliaN - 2021-10-29 8:36 - Worked on __init__.py to begin supporting login and registration functionality.
