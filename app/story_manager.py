@@ -1,5 +1,9 @@
 import sqlite3
 
+class InputError(Exception):
+	def __init__(self, message):
+		self.message = message
+
 class Story_manager:
 	def __init__(self, db_file:str = "stories.db"):
 		'''sets up the database that stores all the stories'''
@@ -26,8 +30,7 @@ class Story_manager:
 				print(e)
 				return False
 		else:
-			print("Attempted to put story with same title as another")
-			return False
+			raise InputError("The name of this story is the same as another story.")
 		# TODO: We should make an exception for overlapping story titles and invalid titles
 
 	def get_last_entry(self, story:str) -> str:
@@ -63,9 +66,3 @@ class Story_manager:
 	def __del__(self):
 		self.db.commit()
 		self.db.close()
-
-if __name__ == "__main__":
-	sm = Story_manager()
-	sm.create_story("admin", "test", "testy test")
-	sm.create_story("admin", "test2", "testy test")
-	print(sm.get_catalog())
