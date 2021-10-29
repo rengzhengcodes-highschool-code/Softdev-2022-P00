@@ -28,6 +28,8 @@ class Story_manager:
 
 	def get_last_entry(self, story:str) -> str:
 		'''Gets the latest entry in a story'''
+		self.c.execute("SELECT COUNT(*) WHERE story=? ORDER BY order", (story,))
+
 		pass
 
 	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
@@ -38,7 +40,7 @@ class Story_manager:
 		'''Returns a tuple of all the stories.'''
 		self.c.execute("SELECT * FROM stories")
 		catalog = tuple(self.c.fetchall())
-		print(catalog)
+		return catalog
 
 	def get_user_contributions(self, usr:str) -> tuple:
 		'''Returns a tuple of all the stories the user has contributed to.'''
@@ -54,6 +56,6 @@ class Story_manager:
 
 if __name__ == "__main__":
 	sm = Story_manager()
-	sm.create_story("test", "admin", "testy test")
-	sm.create_story("test2", "admin", "testy test")
-	sm.get_catalog()
+	sm.create_story("admin", "test", "testy test")
+	sm.create_story("admin", "test2", "testy test")
+	print(sm.get_catalog())
