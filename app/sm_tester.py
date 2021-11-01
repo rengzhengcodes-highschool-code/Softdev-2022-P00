@@ -67,9 +67,11 @@ def test_catalog(num:int = 100):
 
 def test_insertion(num: int = 100):
 	'''Tests insertion and by proxy get_last_entry()'''
-	pass
+	sm.create_story("admin", "test", "starter") #avoids dupe names by taking next block of numbers after the end
+	sm.get_last_entry("test")
 
 test_creation()
 purge()
 test_catalog()
 purge()
+test_insertion()

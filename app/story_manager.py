@@ -35,9 +35,9 @@ class Story_manager:
 
 	def get_last_entry(self, story:str) -> str:
 		'''Gets the latest entry in a story'''
-		self.c.execute("SELECT COUNT(*) WHERE story=? ORDER BY order", (story,))
-
-		pass
+		self.c.execute("SELECT COUNT(*) FROM contributions WHERE story=? ORDER BY ordinal", (story,))
+		entries = self.c.fetchall()
+		print(entries)
 
 	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
 		'''Inserts an entry into the story. Notes user.'''
