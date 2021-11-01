@@ -5,3 +5,4 @@ rengZ -- 2021-10-28 15:19 - Added boilerplate to better visualize what functions
 rengZ -- 2021-10-28 15:32 - Added way to get manifest of all stories based on uncritiqued portion of the design documnent.
 rengZ -- 2021-10-28 8:11 - Fixed design document. Fixed the main critiques of lacking a registration page. Fixed other main critique of separate tables for stories being unmaintainable + unsecure. Clarified functionality of tables.
 rengZ -- 2021-10-28 15:30 - Added a testing file for the story manager.
+rengZ -- 2021-11-01 8:37 - verified the integrity of get_catalog. Began get_last_entry() testing but it only returns numbers.
