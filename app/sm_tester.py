@@ -65,6 +65,11 @@ def test_catalog(num:int = 100):
 	else:
 		return True
 
+def test_insertion(num: int = 100):
+	'''Tests insertion and by proxy get_last_entry()'''
+	pass
+
 test_creation()
 purge()
 test_catalog()
+purge()
