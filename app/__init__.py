@@ -5,6 +5,7 @@ server = Flask(__name__)
 server.secret_key = os.urandom(32)
 header = """#Team O Tree - Julia Nelson, Renggeng Zheng, Ivan Lam, Michelle Lo"""
 
+# change to retrieve from SQLite database
 passwords = {}
 
 @server.route('/', methods=["GET"])
@@ -37,6 +38,9 @@ def login():
 def login_error(error: str):
 	return render_template("login.html", header=header, login_status=error)
 
+def registration_error(error: str):
+	return render_template("register.html", header=header, login_status=error)
+
 def set_login_cookie(): #pass in a template to get cookies
 	if request.method == "POST": #check in case we call this elsewhere
 		session["u_name"] = request.form["u_name"] #login cookie set
@@ -46,12 +50,12 @@ def resgister():
 	'''allows user to create new username and password'''
 	try:
 		if request.method != "POST": #makes sure data is not sent in the url
-			return login_error("Wrong method used to access register. Must use POST")
-		if request.form["u_name"].equals(request.form["conf_u_name"]): #pretty sure we should hash the password but this is a proof of concept for the login.
-			# add to passwords database
-			"""return render_template("home.html", header=header, username = request.form["u_name"]) # user greeting + our header
+			return registration_error("Wrong method used to access register. Must use POST")
+		if request.form["u_name"]:
+			# Check valid username, make sure passwords the same
 		else:
-			if request.form["u_name"] not in passwords:
+			return registration_error("Must enter a username.")
+			"""if request.form["u_name"] not in passwords:
 				return login_error("User does not exist.")
 			elif passwords[request.form["u_name"]] != request.form["p_word"]:
 				return login_error("Password is wrong.")
