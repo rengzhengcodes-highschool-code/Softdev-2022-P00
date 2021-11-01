@@ -53,8 +53,8 @@ def test_creation(num:int = 100):
 def test_catalog(num:int = 100):
 	expected_catalog =list()
 	for i in range(num): #creates stories for testing purposes
-		sm.create_story(str(i), str(i), str(i))
-		expected_catalog.append(str(i)) # builds expected return tuple
+		sm.create_story("user" + str(i), "story" + str(i), "starter" + str(i))
+		expected_catalog.append("story" + str(i)) # builds expected return tuple
 
 	expected_catalog = tuple(expected_catalog) # turns expected_catalog into a tuple
 
