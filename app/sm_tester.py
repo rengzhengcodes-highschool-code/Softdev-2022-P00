@@ -3,13 +3,17 @@ from story_manager import Story_manager, InputError
 from os import remove, path
 
 db_file = "test.db"
+sm = None
 
 def purge():
 	global sm
 	global db_file
 	if path.exists(db_file):
+		del sm
 		remove(db_file) #makes sure none of previous test is there
-	sm = Story_manager(db_file)
+		sm = Story_manager(db_file)
+	else:
+		sm = Story_manager(db_file)
 
 purge()
 
@@ -47,7 +51,18 @@ def test_creation(num:int = 100):
 	return success
 
 def test_catalog(num:int = 100):
-	for i in range(num):
-		sm.create_story(str(i), str(+))
+	expected_catalog =list()
+	for i in range(num): #creates stories for testing purposes
+		sm.create_story(str(i), str(i), str(i))
+		expected_catalog.append(str(i)) # builds expected return
+
+	if expected_catalog != sm.get_catalog():
+		print(expected_catalog)
+		print(sm.get_catalog())
+		return False
+	else:
+		return True
+
 test_creation()
 purge()
+test_catalog()
