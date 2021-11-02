@@ -78,14 +78,39 @@ def test_insertion_and_get_last(num: int = 100):
 
 	print("~~ insertion into 1 story test ~~")
 	for i in range(num):
-		sm.insert_entry(str(i), "test", str(i))
-		expected_tuple = (str(i), "test", str(i), i + 1)
+		sm.insert_entry("user" + str(i), "test", str(i))
+		expected_tuple = ("user" + str(i), "test", str(i), i + 1)
 		debug_print(expected_tuple)
 		debug_print(sm.get_last_entry("test"))
 		if expected_tuple != sm.get_last_entry("test"):
 			print("tuple doesn't match")
 			return False # last entry did not match what was just inserted
 
+	print("~~ contributors check ~~")
+	expected_roster = ["admin"] #starting name is admin
+	# builds expected roster check
+	for i in range(num):
+		expected_roster.append(f"user{i}")
+	expected_roster = tuple(expected_roster)
+	#checks names are all correct
+	if expected_roster != sm.get_story_contributors("test"):
+		print(expected_roster)
+		print(sm.get_story_contributors("test"))
+		return False
+
+	print("~~ duplicate users check ~~")
+	last_entry = sm.get_last_entry("test") # last entry in the story
+	for i in range(num):
+		try:
+			sm.insert_entry(f"user{i}", "test", str(i))
+		except InputError:
+			pass
+		# makes sure last entry didn't change
+		if last_entry != sm.get_last_entry("test"):
+			print(last_entry)
+			print(sm.get_last_entry("test"))
+			return False
+	
 	return True
 
 test_creation()
