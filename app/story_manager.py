@@ -23,8 +23,8 @@ class Story_manager:
 		# adds a story to the list
 		if story not in self.get_catalog():
 			try: # if an error happens, it will catch it and say something is wrong with the story creation
-				self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,))
-				self.c.execute("INSERT INTO contributions(contributor, story, addition, ordinal) VALUES(?, ?, ?, ?)", (creator, story, starter, 0))
+				self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,)) #insert the new story into the catalog
+				self.c.execute("INSERT INTO contributions(contributor, story, addition, ordinal) VALUES(?, ?, ?, ?)", (creator, story, starter, 0)) # add the initial contribution to the contributions table
 				return True
 			except Exception as e: # if it does not it won't
 				print(e)
@@ -37,7 +37,7 @@ class Story_manager:
 		'''Gets the latest entry in a story'''
 		self.c.execute("SELECT * FROM contributions WHERE story=? ORDER BY ordinal", (story,))
 		entries = self.c.fetchall()
-		print(entries)
+		return entries[-1] #return last entry
 
 	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
 		'''Inserts an entry into the story. Notes user.'''

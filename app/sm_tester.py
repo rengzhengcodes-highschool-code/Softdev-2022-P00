@@ -71,7 +71,7 @@ def test_insertion(num: int = 100):
 	print("___ insertion test ___")
 	'''Tests insertion and by proxy get_last_entry()'''
 	sm.create_story("admin", "test", "starter") #avoids dupe names by taking next block of numbers after the end
-	sm.get_last_entry("test")
+	print(sm.get_last_entry("test"))
 
 test_creation()
 purge()
