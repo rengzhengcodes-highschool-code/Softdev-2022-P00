@@ -110,7 +110,19 @@ def test_insertion_and_get_last(num: int = 100):
 			print(last_entry)
 			print(sm.get_last_entry("test"))
 			return False
-	
+
+	print("-- multiple stories test --")
+	for i in range(num):
+		# creates story and checks last entry to ensure no messups
+		sm.create_story(f"admin{i}", f"test{i}", f"starter{i}")
+		expected_tuple = (f"admin{i}", f"test{i}", f"starter{i}", 0)
+		if expected_tuple != sm.get_last_entry(f"test{i}"):
+			print("Dupe story creation failed")
+			print(expected_tuple)
+			print(sm.get_last_entry(f"test{i}"))
+			return False
+
+		
 	return True
 
 test_creation()
