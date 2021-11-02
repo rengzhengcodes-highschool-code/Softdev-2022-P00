@@ -134,6 +134,19 @@ def test_insertion_and_get_last(num: int = 100):
 				print(sm.get_last_entry(f"test{i}"))
 				return False # last entry did not match what was just inserted
 
+		#multiple stories contributors check
+		expected_roster = [f"admin{i}"]
+		# builds expected roster check
+		for j in range(num):
+			expected_roster.append(f"user{j}")
+		expected_roster = tuple(expected_roster)
+		#checks names are all correct
+		if expected_roster != sm.get_story_contributors(f"test{i}"):
+			print(expected_roster)
+			print(sm.get_story_contributors(f"test{i}"))
+			return False
+
+		#duplicate users check
 
 
 	return True
