@@ -14,20 +14,9 @@ def landing():
         If the user is logged out, the user will return to the landing page'''
 
     if request.method == 'POST':
-        return user1.logout('username')
-        '''
-        session.pop('username')
-        return render_template('index.html')
-        '''
+        return user1.logout() #if the user chooses to log out, render landing page.
     else:
-        return user1.landing_status('username')
-        ''''
-        if 'username' not in session:
-            return render_template('index.html')
-        else:
-            return redirect('/home')
-            #return render_template('home.html', session['username'])
-        '''
+        return user1.landing_status() #if user is logged in, render landing. otherwise, redirect to home.
 
 @app.route('/login', methods=['GET', 'POST'])
 def disp_loginpage():
@@ -42,6 +31,8 @@ def authenticate():
     ''' If user tries to login, authenticate will validate the user's credentials.
     If the user's username and password are correct, authenticate will redirect
     to home. Otherwise, it will display a error message. '''
+
+    # to-do: users who are already logged in, could they log in again?
     try:
         if request.method == 'POST':
             username = request.form['username']
@@ -49,13 +40,13 @@ def authenticate():
             result = user1.validate_login(username, password)
 
             if result == 'true':
-                session['username'] = username
+                #action items for if user is able to login
                 return redirect(('/home'))
 
             elif result == 'false':
-                return login_error("nope this is wrong")
+                return user1.login_error("Nope, this is wrong")
         else:
-            return login_error("Invalid. Must use POST method")
+            return user1.login_error("Invalid. Must use POST method")
     except:
         return login_error("unknown error occured. try again")
 
@@ -71,7 +62,6 @@ def disp_home():
     ''' If user is logged in, will display home. Otherwise, it will display landing
     page'''
     if 'username' in session:
-        print("username in session?")
         return render_template(
             'home.html',
             username = session['username']
