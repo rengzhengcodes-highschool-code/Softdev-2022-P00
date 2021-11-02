@@ -78,8 +78,8 @@ def test_insertion_and_get_last(num: int = 100):
 
 	print("~~ insertion into 1 story test ~~")
 	for i in range(num):
-		sm.insert_entry("user" + str(i), "test", str(i))
-		expected_tuple = ("user" + str(i), "test", str(i), i + 1)
+		sm.insert_entry(f"user{i}", "test", str(i))
+		expected_tuple = (f"user{i}", "test", str(i), i + 1)
 		debug_print(expected_tuple)
 		debug_print(sm.get_last_entry("test"))
 		if expected_tuple != sm.get_last_entry("test"):
@@ -122,7 +122,20 @@ def test_insertion_and_get_last(num: int = 100):
 			print(sm.get_last_entry(f"test{i}"))
 			return False
 
-		
+		#multiple stories insertion test
+		for j in range(num):
+			sm.insert_entry(f"user{j}", f"test{i}", str(j))
+			expected_tuple = (f"user{j}", f"test{i}", str(j), j + 1)
+			debug_print(expected_tuple)
+			debug_print(sm.get_last_entry(f"test{i}"))
+			if expected_tuple != sm.get_last_entry(f"test{i}"):
+				print("tuple doesn't match in multiple stories insertion test")
+				print(expected_tuple)
+				print(sm.get_last_entry(f"test{i}"))
+				return False # last entry did not match what was just inserted
+
+
+
 	return True
 
 test_creation()
