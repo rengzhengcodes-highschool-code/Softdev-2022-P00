@@ -35,7 +35,7 @@ class Story_manager:
 
 	def get_last_entry(self, story:str) -> str:
 		'''Gets the latest entry in a story'''
-		self.c.execute("SELECT COUNT(*) FROM contributions WHERE story=? ORDER BY ordinal", (story,))
+		self.c.execute("SELECT * FROM contributions WHERE story=? ORDER BY ordinal", (story,))
 		entries = self.c.fetchall()
 		print(entries)
 

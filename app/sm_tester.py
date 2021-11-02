@@ -20,6 +20,7 @@ purge()
 def test_creation(num:int = 100):
 	global sm
 	success = False
+	print("___ test create_story ___")
 	print("~~ NO DUPES ~~")
 	try:
 		for i in range(num):
@@ -51,6 +52,7 @@ def test_creation(num:int = 100):
 	return success
 
 def test_catalog(num:int = 100):
+	print("___ catalog test ___")
 	expected_catalog =list()
 	for i in range(num): #creates stories for testing purposes
 		sm.create_story("user" + str(i), "story" + str(i), "starter" + str(i))
@@ -66,6 +68,7 @@ def test_catalog(num:int = 100):
 		return True
 
 def test_insertion(num: int = 100):
+	print("___ insertion test ___")
 	'''Tests insertion and by proxy get_last_entry()'''
 	sm.create_story("admin", "test", "starter") #avoids dupe names by taking next block of numbers after the end
 	sm.get_last_entry("test")
