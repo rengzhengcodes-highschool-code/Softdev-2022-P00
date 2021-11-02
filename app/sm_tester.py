@@ -147,7 +147,18 @@ def test_insertion_and_get_last(num: int = 100):
 			return False
 
 		#duplicate users check
-
+		last_entry = sm.get_last_entry(f"test{i}") # last entry in the story
+		for j in range(num):
+			try:
+				sm.insert_entry(f"user{j}", f"test{i}", str(i))
+			except InputError:
+				pass
+			# makes sure last entry didn't change
+			if last_entry != sm.get_last_entry(f"test{i}"):
+				print("last entry changed")
+				print(last_entry)
+				print(sm.get_last_entry(f"test{i}"))
+				return False
 
 	return True
 
