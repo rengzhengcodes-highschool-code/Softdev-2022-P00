@@ -38,6 +38,8 @@ def test_creation(num:int = 100):
 		for i in range(num):
 			try:
 				sm.create_story("test", str(i), str(i))
+				print("should have thrown an exception")
+				return success
 			except InputError:
 				pass #we want it to raise an error
 	except Exception as e:
@@ -103,6 +105,8 @@ def test_insertion_and_get_last(num: int = 100):
 	for i in range(num):
 		try:
 			sm.insert_entry(f"user{i}", "test", str(i))
+			print("Should have thrown an exception")
+			return False
 		except InputError:
 			pass
 		# makes sure last entry didn't change
@@ -151,6 +155,8 @@ def test_insertion_and_get_last(num: int = 100):
 		for j in range(num):
 			try:
 				sm.insert_entry(f"user{j}", f"test{i}", str(i))
+				print("Should have thrown an exception")
+				return False
 			except InputError:
 				pass
 			# makes sure last entry didn't change
