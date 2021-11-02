@@ -39,6 +39,17 @@ class Story_manager:
 		entries = self.c.fetchall()
 		return entries[-1] #return last entry
 
+	def get_story_contributors(self, story:str) -> tuple:
+		'''Gets the contributors to a particular story'''
+		self.c.execute("SELECT contributor FROM contributions WHERE story=?", (story,))
+		raw_roster = self.c.fetchall() #returns a tuple, where tuples inside contain the name
+		roster = list()
+		# takes names and puts it into 1 tuple instead of tuple in tuple
+		for row in raw_roster:
+			roster.append(row[0])
+
+		return tuple(roster)
+
 	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
 		'''Inserts an entry into the story. Notes user.'''
 		last_ordinal = self.get_last_entry(story)[-1] #the number of the last entry
