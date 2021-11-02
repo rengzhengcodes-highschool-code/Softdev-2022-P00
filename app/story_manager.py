@@ -53,7 +53,7 @@ class Story_manager:
 	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
 		'''Inserts an entry into the story. Notes user.'''
 		last_ordinal = self.get_last_entry(story)[-1] #the number of the last entry
-		if usr not in get_story_contributors(story):
+		if usr not in self.get_story_contributors(story):
 			self.c.execute("INSERT INTO contributions(contributor, story, addition, ordinal) VALUES(?,?,?,?)", (usr, story, addition, last_ordinal + 1)) #inserts the contribution into the contributions table in the correct order
 		else:
 			raise InputError("User already contributed to this story.")
