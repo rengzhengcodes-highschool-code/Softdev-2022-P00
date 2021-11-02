@@ -17,6 +17,10 @@ def purge():
 
 purge()
 
+def debug_print(input, DEBUG:bool = False):
+	if DEBUG:
+		print(input)
+
 def test_creation(num:int = 100):
 	global sm
 	success = False
@@ -67,14 +71,25 @@ def test_catalog(num:int = 100):
 	else:
 		return True
 
-def test_insertion(num: int = 100):
+def test_insertion_and_get_last(num: int = 100):
 	print("___ insertion test ___")
-	'''Tests insertion and by proxy get_last_entry()'''
-	sm.create_story("admin", "test", "starter") #avoids dupe names by taking next block of numbers after the end
-	print(sm.get_last_entry("test"))
+	'''Tests insertion and get_last_entry()'''
+	sm.create_story("admin", "test", "starter") #story we'll be inserting into
+
+	print("~~ insertion into 1 story test ~~")
+	for i in range(num):
+		sm.insert_entry(str(i), "test", str(i))
+		expected_tuple = (str(i), "test", str(i), i + 1)
+		debug_print(expected_tuple)
+		debug_print(sm.get_last_entry("test"))
+		if expected_tuple != sm.get_last_entry("test"):
+			print("tuple doesn't match")
+			return False # last entry did not match what was just inserted
+
+	return True
 
 test_creation()
 purge()
 test_catalog()
 purge()
-test_insertion()
+test_insertion_and_get_last()
