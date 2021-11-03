@@ -73,7 +73,14 @@ class Story_manager:
 
 	def get_user_contributions(self, usr:str) -> tuple:
 		'''Returns a tuple of all the stories the user has contributed to.'''
-		pass
+		self.c.execute("SELECT story FROM contributions WHERE contributor=?", (usr,))
+		raw_stories = self.c.fetchall()
+		stories = list()
+		#takes the story titles and puts them into 1 tuple instead of tuple in tuples
+		for row in raw_stories:
+			stories.append(row[0])
+
+		return tuple(stories)
 
 	def get_story(self, story:str) -> str:
 		'''Returns the full text of a story'''
