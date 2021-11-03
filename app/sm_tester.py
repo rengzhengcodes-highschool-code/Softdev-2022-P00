@@ -225,12 +225,18 @@ def test_story_getter(num:int = 100, seed:int = 42):
 			return False
 	return True
 
-test_creation()
+success = True
+success = success and test_creation()
 purge()
-test_catalog()
+success = success and test_catalog()
 purge()
-#test_insertion_and_get_last()
-#purge()
-test_user_contributions()
+success = success and test_insertion_and_get_last()
 purge()
-test_story_getter()
+success = success and test_user_contributions()
+purge()
+success = success and test_story_getter()
+
+if success:
+	print("Success")
+else:
+	print("Failed")
