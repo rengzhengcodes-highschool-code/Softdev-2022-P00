@@ -170,30 +170,40 @@ def test_insertion_and_get_last(num: int = 100):
 	return True
 
 def test_user_contributions(num:int = 100, seed:int = 42):
+	print("___ user contributions retrieval test ___")
 	random.seed(seed)
 	# creates an array of stories
 	for i in range(num):
-		sm.create_story(f"test{i}", str(i), str(i))
+		sm.create_story(f"admin{i}", f"story{i}", f"starter{i}")
 
 	for i in range(num):
 		#list of stories user is expected to have contributed to
 		user = f"user{i}"
 		expected_stories = list()
 		for j in range(int(num/10)):
-			story = random.randint(num)
+			#chooses a random story
+			story = random.randint(0, num - 1)
 			#ensures no duplicate user insertions
-			while story in expected_stories:
-				story = random.randint(num)
-			
-			story.append(story)
-			story_name = f"test{story}"
+			while f"story{story}" in expected_stories:
+				story = random.randint(0, num - 1)
 
+			expected_stories.append(f"story{story}")
+			story_name = f"story{story}"
+			debug_print(story_name)
+			# makes a random entry
 			sm.insert_entry(user, story_name, f"addition{j}")
+		expected_stories = tuple(expected_stories)
 
+		if expected_stories != sm.get_user_contributions(f"user{i}"):
+			print(expected_stories)
+			print(sm.get_user_contributions(f"user{i}"))
+			return False
+
+	return True
 test_creation()
 purge()
 test_catalog()
 purge()
-test_insertion_and_get_last()
-purge()
+#test_insertion_and_get_last()
+#purge()
 test_user_contributions()
