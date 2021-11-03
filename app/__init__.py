@@ -12,6 +12,7 @@ def landing():
         If the user is logged in already, they will be redirected to the
         home page.
         If the user is logged out, the user will return to the landing page'''
+    return render_template('landing.html')
 
     if request.method == 'POST':
         return user1.logout() #if the user chooses to log out, render landing page.
@@ -57,6 +58,11 @@ def login_error(error_msg):
     )
 
 
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
+    return render_template('register.html')
+
+
 @app.route('/home', methods=['GET', 'POST'])
 def disp_home():
     ''' If user is logged in, will display home. Otherwise, it will display landing
@@ -69,6 +75,9 @@ def disp_home():
     else:
         return redirect('/')
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    return render_template('search.html')
 
 
 if __name__ == '__main__': #false if this file imported as module
