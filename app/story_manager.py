@@ -94,7 +94,7 @@ class Story_manager:
 		story = ""
 		#turns the story from tuple to string
 		for row in raw_story:
-			story += row[0] + "\n\n\t" #separates contributions by an empty line and a tab
+			story += f"{row[0]}\n\n\t" #separates contributions by an empty line and a tab
 		#removes trailing whitespace
 		story.rstrip()
 		return story
