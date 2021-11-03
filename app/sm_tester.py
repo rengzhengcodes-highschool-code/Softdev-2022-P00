@@ -1,6 +1,7 @@
 # Tests the Story_manager
 from story_manager import Story_manager, InputError
 from os import remove, path
+import random
 
 db_file = "test.db"
 sm = None
@@ -168,8 +169,74 @@ def test_insertion_and_get_last(num: int = 100):
 
 	return True
 
-test_creation()
+def test_user_contributions(num:int = 100, seed:int = 42):
+	print("___ user contributions retrieval test ___")
+	random.seed(seed)
+	# creates an array of stories
+	for i in range(num):
+		sm.create_story(f"admin{i}", f"story{i}", f"starter{i}")
+
+	for i in range(num):
+		#list of stories user is expected to have contributed to
+		user = f"user{i}"
+		expected_stories = list()
+		for j in range(int(num/10)):
+			#chooses a random story
+			story = random.randint(0, num - 1)
+			#ensures no duplicate user insertions
+			while f"story{story}" in expected_stories:
+				story = random.randint(0, num - 1)
+
+			expected_stories.append(f"story{story}")
+			story_name = f"story{story}"
+			debug_print(story_name)
+			# makes a random entry
+			sm.insert_entry(user, story_name, f"addition{j}")
+		expected_stories = tuple(expected_stories)
+
+		if expected_stories != sm.get_user_contributions(f"user{i}"):
+			print(expected_stories)
+			print(sm.get_user_contributions(f"user{i}"))
+			return False
+
+	return True
+
+def test_story_getter(num:int = 100, seed:int = 42):
+	random.seed(42)
+	# multiple tests
+	for i in range(num):
+		#creates story
+		story = f"story{i}"
+		sm.create_story(f"admin{i}", story, f"starter{i}")
+
+		expected = f"starter{i}\n\n\t" #what we should expect returned
+		for j in range(num):
+			#generates absurd values
+			value = random.randbytes(random.randint(1, 3))
+			sm.insert_entry(f"user{j}", story, value)
+			expected += f"{value}\n\n\t"
+
+		expected = expected[0:-3] # removes trailing whitespace
+		#checks return is correct
+		if expected != sm.get_story(story):
+			print(expected)
+			print("---")
+			print(sm.get_story(story))
+			return False
+	return True
+
+success = True
+success = success and test_creation()
 purge()
-test_catalog()
+success = success and test_catalog()
 purge()
-test_insertion_and_get_last()
+success = success and test_insertion_and_get_last()
+purge()
+success = success and test_user_contributions()
+purge()
+success = success and test_story_getter()
+
+if success:
+	print("Success")
+else:
+	print("Failed")

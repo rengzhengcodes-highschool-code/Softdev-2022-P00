@@ -13,3 +13,5 @@ rengZ -- 2021-11-02 15:00 - Finished story entry insertion, getting the last ent
 michelleL -- 2021-11-02 21:50: Added login functionality. Users can log in with a set username and password and access the landing page, home page, and login page.
 juliaN - 2021-11-02 23:40 Check over repo for progress and ran demo to ensure functionality.
 juliaN - 2021-11-03 8:33 Removed landing page (name changed to index)
+rengZ -- 2021-11-03 12:01 - Finished getting a user's contributions.
+rengZ -- 2021-11-03 14:37 - Finished story manager in its entirety. Allt est cases passed.

@@ -35,7 +35,10 @@ class Story_manager:
 
 	def get_last_entry(self, story:str) -> str:
 		'''Gets the latest entry in a story'''
-		self.c.execute("SELECT * FROM contributions WHERE story=? ORDER BY ordinal", (story,))
+		if story in self.get_catalog():
+			self.c.execute("SELECT * FROM contributions WHERE story=? ORDER BY ordinal", (story,))
+		else:
+			raise InputError("Story does not exist")
 		entries = self.c.fetchall()
 		return entries[-1] #return last entry
 
@@ -53,7 +56,9 @@ class Story_manager:
 	def insert_entry(self, usr:str, story:str, addition:str) -> bool:
 		'''Inserts an entry into the story. Notes user.'''
 		last_ordinal = self.get_last_entry(story)[-1] #the number of the last entry
-		if usr not in self.get_story_contributors(story):
+		if story not in self.get_catalog():
+			raise InputError("Story does not exist")
+		elif usr not in self.get_story_contributors(story):
 			self.c.execute("INSERT INTO contributions(contributor, story, addition, ordinal) VALUES(?,?,?,?)", (usr, story, addition, last_ordinal + 1)) #inserts the contribution into the contributions table in the correct order
 		else:
 			raise InputError("User already contributed to this story.")
@@ -73,11 +78,26 @@ class Story_manager:
 
 	def get_user_contributions(self, usr:str) -> tuple:
 		'''Returns a tuple of all the stories the user has contributed to.'''
-		pass
+		self.c.execute("SELECT story FROM contributions WHERE contributor=?", (usr,))
+		raw_stories = self.c.fetchall()
+		stories = list()
+		#takes the story titles and puts them into 1 tuple instead of tuple in tuples
+		for row in raw_stories:
+			stories.append(row[0])
+
+		return tuple(stories)
 
 	def get_story(self, story:str) -> str:
 		'''Returns the full text of a story'''
-		pass
+		self.c.execute("SELECT addition FROM contributions WHERE story=?", (story,))
+		raw_story = self.c.fetchall()
+		story = ""
+		#turns the story from tuple to string
+		for row in raw_story:
+			story += f"{row[0]}\n\n\t" #separates contributions by an empty line and a tab
+		#removes trailing whitespace
+		story = story.rstrip()
+		return story
 
 	def __del__(self):
 		self.db.commit()
