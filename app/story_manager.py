@@ -89,7 +89,15 @@ class Story_manager:
 
 	def get_story(self, story:str) -> str:
 		'''Returns the full text of a story'''
-		pass
+		self.c.execute("SELECT addition FROM contributions WHERE story=?", (story,))
+		raw_story = self.c.fetchall()
+		story = ""
+		#turns the story from tuple to string
+		for row in raw_story:
+			story += row[0] + "\n\n\t" #separates contributions by an empty line and a tab
+		#removes trailing whitespace
+		story.rstrip()
+		return story
 
 	def __del__(self):
 		self.db.commit()
