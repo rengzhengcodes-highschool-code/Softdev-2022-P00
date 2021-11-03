@@ -1,4 +1,6 @@
 # The Storyboard - Collaborative Story Telling by Team O Tree
+This website is one where anyone can start a story with a prompt. Then, other users 
+## Roster:
  * Ivan Lam -- Managing html pages and how they render.
  * Renggeng Zheng -- Managing story databases, their creation and access.
  * Julia Nelson -- Managing webhosting, and making sure related components work together (e.g. connecting HTML and story databases)
