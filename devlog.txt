@@ -5,8 +5,13 @@ rengZ -- 2021-10-28 15:19 - Added boilerplate to better visualize what functions
 rengZ -- 2021-10-28 15:32 - Added way to get manifest of all stories based on uncritiqued portion of the design documnent.
 rengZ -- 2021-10-28 8:11 - Fixed design document. Fixed the main critiques of lacking a registration page. Fixed other main critique of separate tables for stories being unmaintainable + unsecure. Clarified functionality of tables.
 rengZ -- 2021-10-28 15:30 - Added a testing file for the story manager.
+juliaN - 2021-10-29 8:36 - Worked on __init__.py to begin supporting login and registration functionality.
 rengZ -- 2021-11-01 8:37 - verified the integrity of get_catalog. Began get_last_entry() testing but it only returns numbers.
+juliaN - 2021-11-1 8:14 - Worked on registration capabilities in __init__.py
+juliaN - 2021-11-1 8:28 - Worked on modularizing login and registration methods
 rengZ -- 2021-11-02 15:00 - Finished story entry insertion, getting the last entry, and getting all contributors to a story.
 michelleL -- 2021-11-02 21:50: Added login functionality. Users can log in with a set username and password and access the landing page, home page, and login page.
+juliaN - 2021-11-02 23:40 Check over repo for progress and ran demo to ensure functionality.
+juliaN - 2021-11-03 8:33 Removed landing page (name changed to index)
 rengZ -- 2021-11-03 12:01 - Finished getting a user's contributions.
 rengZ -- 2021-11-03 14:37 - Finished story manager in its entirety. Allt est cases passed.

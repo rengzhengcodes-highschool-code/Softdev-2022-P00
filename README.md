@@ -1,5 +1,5 @@
 # The Storyboard - Collaborative Story Telling by Team O Tree
-This website is one where anyone can start a story with a prompt. Then, other users 
+This website is one where anyone can start a story with a prompt. Then, other users will have the ability to add one contribution to the story.
 ## Roster:
  * Ivan Lam -- Managing html pages and how they render.
  * Renggeng Zheng -- Managing story databases, their creation and access.
