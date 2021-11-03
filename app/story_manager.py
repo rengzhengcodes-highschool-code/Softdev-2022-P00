@@ -96,7 +96,7 @@ class Story_manager:
 		for row in raw_story:
 			story += f"{row[0]}\n\n\t" #separates contributions by an empty line and a tab
 		#removes trailing whitespace
-		story.rstrip()
+		story = story.rstrip()
 		return story
 
 	def __del__(self):

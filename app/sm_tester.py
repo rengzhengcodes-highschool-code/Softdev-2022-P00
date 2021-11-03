@@ -200,6 +200,31 @@ def test_user_contributions(num:int = 100, seed:int = 42):
 			return False
 
 	return True
+
+def test_story_getter(num:int = 100, seed:int = 42):
+	random.seed(42)
+	# multiple tests
+	for i in range(num):
+		#creates story
+		story = f"story{i}"
+		sm.create_story(f"admin{i}", story, f"starter{i}")
+
+		expected = f"starter{i}\n\n\t" #what we should expect returned
+		for j in range(num):
+			#generates absurd values
+			value = random.randbytes(random.randint(1, 3))
+			sm.insert_entry(f"user{j}", story, value)
+			expected += f"{value}\n\n\t"
+
+		expected = expected[0:-3] # removes trailing whitespace
+		#checks return is correct
+		if expected != sm.get_story(story):
+			print(expected)
+			print("---")
+			print(sm.get_story(story))
+			return False
+	return True
+
 test_creation()
 purge()
 test_catalog()
@@ -207,3 +232,5 @@ purge()
 #test_insertion_and_get_last()
 #purge()
 test_user_contributions()
+purge()
+test_story_getter()
