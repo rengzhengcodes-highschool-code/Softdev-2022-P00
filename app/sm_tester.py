@@ -1,6 +1,7 @@
 # Tests the Story_manager
 from story_manager import Story_manager, InputError
 from os import remove, path
+import random
 
 db_file = "test.db"
 sm = None
@@ -168,8 +169,31 @@ def test_insertion_and_get_last(num: int = 100):
 
 	return True
 
+def test_user_contributions(num:int = 100, seed:int = 42):
+	random.seed(seed)
+	# creates an array of stories
+	for i in range(num):
+		sm.create_story(f"test{i}", str(i), str(i))
+
+	for i in range(num):
+		#list of stories user is expected to have contributed to
+		user = f"user{i}"
+		expected_stories = list()
+		for j in range(int(num/10)):
+			story = random.randint(num)
+			#ensures no duplicate user insertions
+			while story in expected_stories:
+				story = random.randint(num)
+			
+			story.append(story)
+			story_name = f"test{story}"
+
+			sm.insert_entry(user, story_name, f"addition{j}")
+
 test_creation()
 purge()
 test_catalog()
 purge()
 test_insertion_and_get_last()
+purge()
+test_user_contributions()
