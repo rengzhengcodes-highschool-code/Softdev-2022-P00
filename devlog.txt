@@ -8,3 +8,4 @@ rengZ -- 2021-10-28 15:30 - Added a testing file for the story manager.
 rengZ -- 2021-11-01 8:37 - verified the integrity of get_catalog. Began get_last_entry() testing but it only returns numbers.
 rengZ -- 2021-11-02 15:00 - Finished story entry insertion, getting the last entry, and getting all contributors to a story.
 michelleL -- 2021-11-02 21:50: Added login functionality. Users can log in with a set username and password and access the landing page, home page, and login page.
+rengZ -- 2021-11-03 12:01 - Finished getting a user's contributions.
