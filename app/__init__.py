@@ -45,9 +45,9 @@ def authenticate():
                 return redirect(('/home'))
 
             elif result == 'false':
-                return user1.login_error("Nope, this is wrong")
+                return login_error("Nope, this is wrong")
         else:
-            return user1.login_error("Invalid. Must use POST method")
+            return login_error("Invalid. Must use POST method")
     except:
         return login_error("unknown error occured. try again")
 
