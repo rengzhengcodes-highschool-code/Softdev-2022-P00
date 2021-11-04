@@ -4,52 +4,48 @@ import os
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
-user1 = User()
+user1 = User() #allows access to user class methods
 #logged in usernames are always redirected to home
 @app.route('/', methods=['GET', 'POST'])
 def landing():
-    ''' landing displays the landing page if the user is not yet logged in.
-        If the user is logged in already, they will be redirected to the
-        home page.
+    ''' landing displays the landing page.
         If the user is logged out, the user will return to the landing page'''
-    return render_template('landing.html')
 
     if request.method == 'POST':
         return user1.logout() #if the user chooses to log out, render landing page.
     else:
-        return user1.landing_status() #if user is logged in, render landing. otherwise, redirect to home.
+        return render_template(
+            'index.html' #updated code so that user, logged in or not, can access index page.
+        )
 
 @app.route('/login', methods=['GET', 'POST'])
-def disp_loginpage():
-    ''' disp_loginpage displays the login page '''
-    return render_template(
-        'login.html',
-    )
 
-@app.route("/auth", methods=['GET', 'POST'])
-
-def authenticate():
+def login():
     ''' If user tries to login, authenticate will validate the user's credentials.
     If the user's username and password are correct, authenticate will redirect
     to home. Otherwise, it will display a error message. '''
 
-    # to-do: users who are already logged in, could they log in again?
-    try:
-        if request.method == 'POST':
-            username = request.form['username']
-            password = request.form['password']
-            result = user1.validate_login(username, password)
 
-            if result == 'true':
-                #action items for if user is able to login
-                return redirect(('/home'))
+    if 'username' in session:
+        return redirect('/home') #users will not be able to log in again if they are already logged in.
+    else:
 
-            elif result == 'false':
-                return login_error("Nope, this is wrong")
-        else:
-            return login_error("Invalid. Must use POST method")
-    except:
-        return login_error("unknown error occured. try again")
+        try:
+            if request.method == 'POST':
+                username = request.form['username'] #from login.html
+                password = request.form['password']
+                result = user1.validate_login(username, password) #evaluates whether or not credentials are correct (if so, stores session data)
+
+                if result == 'true':
+                    #action items for if user is able to login
+                    return redirect(('/home'))
+
+                elif result == 'false':
+                    return login_error("Nope, this is wrong")
+            else:
+                return login_error("") #returns empty string for now since login can be accessed by get method
+        except:
+            return login_error("unknown error occured. try again")
 
 def login_error(error_msg):
     return render_template(
@@ -67,7 +63,7 @@ def signup():
 def disp_home():
     ''' If user is logged in, will display home. Otherwise, it will display landing
     page'''
-    if 'username' in session:
+    if 'username' in session: #user is only able to access the home page if they are logged in, otherwise, they will be redirected to landing
         return render_template(
             'home.html',
             username = session['username']
