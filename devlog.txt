@@ -16,3 +16,4 @@ juliaN - 2021-11-03 8:33 Removed landing page (name changed to index)
 rengZ -- 2021-11-03 12:01 - Finished getting a user's contributions.
 rengZ -- 2021-11-03 14:37 - Finished story manager in its entirety. Allt est cases passed.
 rengZ -- 2021-11-04 4:21 - Slight speed optimization with list comprehension
+rengZ -- 2021-11-04 8:25 - Updated sitemap on design doc by including clearer headings.
