@@ -17,3 +17,4 @@ rengZ -- 2021-11-03 12:01 - Finished getting a user's contributions.
 rengZ -- 2021-11-03 14:37 - Finished story manager in its entirety. Allt est cases passed.
 rengZ -- 2021-11-04 4:21 - Slight speed optimization with list comprehension
 rengZ -- 2021-11-04 8:25 - Updated sitemap on design doc by including clearer headings.
+michelleL -- 2021-11-04 8:36 - Updated __init__.py so that login functions are in the same app route. Updated templates and code so that users are directed to the right pages when they are logged in and when they are not.
