@@ -19,7 +19,8 @@ class Story_manager:
 		'''Creates a story and returns if successful
 		creator: creator of the story
 		story: title of the story
-		starter: starting prompt of the story'''
+		starter: starting prompt of the story
+		returns if it succeeded in creating the story'''
 		# adds a story to the list
 		if story not in self.get_catalog():
 			self.c.execute("INSERT INTO stories (story) VALUES(?)", (story,)) #insert the new story into the catalog
@@ -39,7 +40,8 @@ class Story_manager:
 		return entries[-1] #return last entry
 
 	def get_story_contributors(self, story:str) -> tuple:
-		'''Gets the contributors to a particular story'''
+		'''Gets the contributors to a particular story
+		returns tuple of the stories this specific user has contributed to'''
 		self.c.execute("SELECT contributor FROM contributions WHERE story=?", (story,))
 		raw_roster = self.c.fetchall() #returns a tuple, where tuples inside contain the name
 		# takes names and puts it into 1 tuple instead of tuple in tuple
