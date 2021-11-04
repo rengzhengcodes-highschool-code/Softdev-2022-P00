@@ -6,6 +6,7 @@ This website is one where anyone can start a story with a prompt. Then, other us
  * Julia Nelson -- Managing webhosting, and making sure related components work together (e.g. connecting HTML and story databases)
  * Michelle Lo -- Login, registration, logout, and the related database.
 ## Launch Codes:
+The following assumes you have python 3.8, pip, and git already installed. 
 How to clone?
  * Open a command line prompt with git installed
  * Run ```git clone https://github.com/rengzhengcodes/Softdev-2022-P00.git```
