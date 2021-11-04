@@ -1,5 +1,5 @@
 # Tests the Story_manager
-from story_manager import Story_manager, InputError
+from app.story_manager import Story_manager, InputError
 from os import remove, path
 import random
 
