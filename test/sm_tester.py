@@ -1,6 +1,10 @@
 # Tests the Story_manager
-from app.story_manager import Story_manager, InputError
+import sys
 from os import remove, path
+# adds the repo to the sys paths. Gets abs path, gets parent directory, then the parent directory of that to get repo directory.
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+#imports from ../app/story_manager.py
+from app.story_manager import Story_manager, InputError
 import random
 
 db_file = "test.db"
