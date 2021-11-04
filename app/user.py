@@ -10,13 +10,6 @@ p_token = 'password'
 
 
 class User :
-    def landing_status(self):
-        ''' landing_status will take user to home page if logged in. Otherwise,
-        user will be redirected to the landing page '''
-        if u_token not in session:
-            return render_template(index + '.html')
-        else:
-            return redirect('/home')
 
     def logout(self):
         ''' If the user chooses to logout, session data will be deleted and
@@ -29,7 +22,7 @@ class User :
         ''' validate_login will return true if username and password are correct
         and false otherwise '''
         if (username == 'aaa' and password == 'pass'):
-            session['username'] = username
+            session[u_token] = username #stores u_token session data
             return 'true'
         else:
             return 'false'
