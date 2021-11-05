@@ -7,7 +7,8 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from app.story_manager import Story_manager, InputError
 import random
 
-db_file = "test.db"
+print(path.dirname(path.abspath(__file__)))
+db_file = path.dirname(path.abspath(__file__)) + "/test.db"
 sm = None
 
 def purge():
