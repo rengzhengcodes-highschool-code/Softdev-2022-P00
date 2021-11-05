@@ -19,11 +19,14 @@ Fixed design document. Fixed the main critiques of lacking a registration page. 
 rengZ -- 2021-10-28 15:30
 Added a testing file for the story manager.
 
-juliaN -- 2021-10-29 8:36 - Worked on __init__.py to begin supporting login and registration functionality.
+juliaN -- 2021-10-29 8:36
+Worked on __init__.py to begin supporting login and registration functionality.
 
-rengZ -- 2021-11-01 8:37 - verified the integrity of get_catalog. Began get_last_entry() testing but it only returns numbers.
+rengZ -- 2021-11-01 8:37
+Verified the integrity of get_catalog. Began get_last_entry() testing but it only returns numbers.
 
-juliaN -- 2021-11-1 8:14 - Worked on registration capabilities in __init__.py
+juliaN -- 2021-11-1 8:14
+Worked on registration capabilities in __init__.py
 
 juliaN -- 2021-11-1 8:28 - Worked on modularizing login and registration methods
 
