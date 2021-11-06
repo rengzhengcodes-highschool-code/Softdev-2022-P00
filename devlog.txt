@@ -28,24 +28,35 @@ Verified the integrity of get_catalog. Began get_last_entry() testing but it onl
 juliaN -- 2021-11-1 8:14
 Worked on registration capabilities in __init__.py
 
-juliaN -- 2021-11-1 8:28 - Worked on modularizing login and registration methods
+juliaN -- 2021-11-1 8:28
+Worked on modularizing login and registration methods
 
-rengZ -- 2021-11-02 15:00 - Finished story entry insertion, getting the last entry, and getting all contributors to a story.
+rengZ -- 2021-11-02 15:00
+Finished story entry insertion, getting the last entry, and getting all contributors to a story.
 
-michelleL -- 2021-11-02 21:50: Added login functionality. Users can log in with a set username and password and access the landing page, home page, and login page.
+michelleL -- 2021-11-02 21:50
+Added login functionality. Users can log in with a set username and password and access the landing page, home page, and login page.
 
-juliaN -- 2021-11-02 23:40 Check over repo for progress and ran demo to ensure functionality.
+juliaN -- 2021-11-02 23:40
+Check over repo for progress and ran demo to ensure functionality.
 
-juliaN -- 2021-11-03 8:33 Removed landing page (name changed to index)
+juliaN -- 2021-11-03 8:33
+Removed landing page (name changed to index)
 
-rengZ -- 2021-11-03 12:01 - Finished getting a user's contributions.
+rengZ -- 2021-11-03 12:01
+Finished getting a user's contributions.
 
-rengZ -- 2021-11-03 14:37 - Finished story manager in its entirety. All test cases passed.
+rengZ -- 2021-11-03 14:37
+Finished story manager in its entirety. All test cases passed.
 
-rengZ -- 2021-11-04 4:21 - Slight speed optimization with list comprehension
+rengZ -- 2021-11-04 4:21
+Slight speed optimization with list comprehension
 
-rengZ -- 2021-11-04 8:25 - Updated sitemap on design doc by including clearer headings.
+rengZ -- 2021-11-04 8:25
+Updated sitemap on design doc by including clearer headings.
 
-michelleL -- 2021-11-04 8:36 - Updated __init__.py so that login functions are in the same app route. Updated templates and code so that users are directed to the right pages when they are logged in and when they are not.
+michelleL -- 2021-11-04 8:36
+Updated __init__.py so that login functions are in the same app route. Updated templates and code so that users are directed to the right pages when they are logged in and when they are not.
 
-RengZ -- 2021-11-05 8:13 - Added provisional flag and checked over launch codes.
+RengZ -- 2021-11-05 8:13
+Added provisional flag and checked over launch codes.
