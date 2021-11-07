@@ -100,10 +100,27 @@ def search():
         sm.create_story("admin", "test", "starter")
     except:
         print(sm.get_catalog())
+
     data = []
-    for x in sm.get_catalog():
-        data.append(x)
-        data.append(sm.get_last_entry(x))
+
+    search = request.args.get('search')
+    if search != "":
+        for x in sm.get_catalog():
+            if x.__contains__(search):
+                l = []
+                l.append(x)
+                l.append(sm.get_last_entry(x))
+                data.append(l)
+    else:
+        for x in sm.get_catalog():
+            l = []
+            l.append(x)
+            l.append(sm.get_last_entry(x))
+            data.append(l)
+
+
+    print(data)
+        
     return render_template('search.html', fulldata = data)
 
 
