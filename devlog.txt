@@ -60,3 +60,6 @@ Updated __init__.py so that login functions are in the same app route. Updated t
 
 RengZ -- 2021-11-05 8:13
 Added provisional flag and checked over launch codes.
+
+IvanL -- 2021-11-07 10:10
+Coded search page and search functionality
