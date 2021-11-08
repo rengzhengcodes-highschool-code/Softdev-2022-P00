@@ -104,7 +104,7 @@ def search():
     data = []
 
     search = request.args.get('search')
-    if search != "":
+    if search is not None:
         for x in sm.get_catalog():
             if x.__contains__(search):
                 l = []
