@@ -91,7 +91,7 @@ def disp_home():
         return render_template(
             'home.html',
             username = session['username'],
-            collection = user_stories
+            collection = get_story_starts('username')
         )
     else:
         return redirect('/')
