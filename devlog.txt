@@ -18,3 +18,4 @@ rengZ -- 2021-11-03 14:37 - Finished story manager in its entirety. Allt est cas
 rengZ -- 2021-11-04 4:21 - Slight speed optimization with list comprehension
 juliaN -- 2021-11-04 8:35 - Started connecting story database with HTML files
 juliaN -- 2021-11-05 8:24 - Worked on routing for each method in stories.py (temporary file), organized methods
+juliaN - 2021-11-08 8:12 - Saved small changes to login and logut functions

@@ -58,8 +58,8 @@ def login_error(error_msg):
     )
 
 
-@app.route("/signup", methods=['GET', 'POST'])
-def signup():
+@app.route("/register", methods=['GET', 'POST'])
+def register():
     return render_template('register.html')
 
 

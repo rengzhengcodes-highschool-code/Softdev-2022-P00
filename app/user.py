@@ -8,7 +8,6 @@ u_token = 'username' #note, i don't use "u_name"
 p_token = 'password'
 
 
-
 class User :
     def landing_status(self):
         ''' landing_status will take user to home page if logged in. Otherwise,
