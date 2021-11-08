@@ -69,3 +69,6 @@ Added provisional flag and checked over launch codes.
 
 IvanL -- 2021-11-07 10:10
 Coded search page and search functionality
+
+michelle -- 2021-11-08 8:19
+Added wiki design page from my previous group.
