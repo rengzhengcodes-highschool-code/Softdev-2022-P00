@@ -90,6 +90,18 @@ class Story_manager:
 		story = story.rstrip()
 		return story
 
+	def get_story_starts(self, usr:str) -> dict:
+		'''gets the start of stories the user has contributed to'''
+		stories = self.get_user_contributions(usr)
+		data = dict() #what will be returned
+
+		for story in stories:
+			start = self.get_story(story)
+			start = start[0:30] #gets the first 30 characters of the story
+			data[story] = start
+
+		return data
+
 	def __del__(self):
 		self.db.commit()
 		self.db.close()
