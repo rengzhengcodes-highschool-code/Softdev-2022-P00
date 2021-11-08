@@ -7,7 +7,8 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from app.story_manager import Story_manager, InputError
 import random
 
-db_file = "test.db"
+print(path.dirname(path.abspath(__file__)))
+db_file = path.dirname(path.abspath(__file__)) + "/test.db"
 sm = None
 
 def purge():
@@ -216,7 +217,7 @@ def test_story_getter(num:int = 100, seed:int = 42):
 		expected = f"starter{i}\n\n\t" #what we should expect returned
 		for j in range(num):
 			#generates absurd values
-			value = random.randbytes(random.randint(1, 3))
+			value = random.getrandbits(8 * random.randint(1, 3))
 			sm.insert_entry(f"user{j}", story, value)
 			expected += f"{value}\n\n\t"
 
