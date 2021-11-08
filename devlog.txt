@@ -60,3 +60,6 @@ Updated __init__.py so that login functions are in the same app route. Updated t
 
 RengZ -- 2021-11-05 8:13
 Added provisional flag and checked over launch codes.
+
+RengZ -- 2021-11-08 8:40
+Added new method to get first 30 characters of stories a user has contributed to.
