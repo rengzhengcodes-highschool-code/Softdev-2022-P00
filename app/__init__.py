@@ -77,8 +77,8 @@ def login_error(error_msg):
     )
 
 
-@app.route("/signup", methods=['GET', 'POST'])
-def signup():
+@app.route("/register", methods=['GET', 'POST'])
+def register():
     return render_template('register.html')
 
 
@@ -87,19 +87,21 @@ def disp_home():
     ''' If user is logged in, will display home. Otherwise, it will display landing
     page'''
     if 'username' in session: #user is only able to access the home page if they are logged in, otherwise, they will be redirected to landing
+    # need command from story manager
         return render_template(
             'home.html',
-            username = session['username']
+            username = session['username'],
+            collection = user_stories
         )
     else:
         return redirect('/')
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    try:
+    '''try:
         sm.create_story("admin", "test", "starter")
     except:
-        print(sm.get_catalog())
+        print(sm.get_catalog())'''
 
     data = []
 
@@ -120,7 +122,7 @@ def search():
 
 
     print(data)
-        
+
     return render_template('search.html', fulldata = data)
 
 
