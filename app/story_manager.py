@@ -8,7 +8,7 @@ class Story_manager:
 	def __init__(self, db_file:str = "stories.db"):
 		'''sets up the database that stores all the stories'''
 		self.DB_FILE = db_file
-		self.db = sqlite3.connect(self.DB_FILE)
+		self.db = sqlite3.connect(self.DB_FILE, check_same_thread=False)
 		self.c = self.db.cursor()
 		# creates stories table if it does not exist
 		self.c.execute("CREATE TABLE IF NOT EXISTS stories(story PRIMARY KEY);")
