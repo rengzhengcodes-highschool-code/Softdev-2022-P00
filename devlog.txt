@@ -82,5 +82,5 @@ Added wiki design page from my previous group.
 juliaN -- 2021-11-08 8:12
 Saved small changes to login and logut functions
 
-juliaN - 2021-11-08 8:26
+juliaN -- 2021-11-08 8:26
 Started implementing functionality to view user contributions on their home page
