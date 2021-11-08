@@ -69,7 +69,6 @@ ivanL -- 2021-11-05 8:14 - Creating html home page to show stories that user con
 
 rengZ -- 2021-11-05 8:13
 Added provisional flag and checked over launch codes.
-
 juliaN -- 2021-11-05 8:24
 Worked on routing for each method in stories.py (temporary file), organized methods
 
@@ -84,3 +83,6 @@ Saved small changes to login and logut functions
 
 juliaN -- 2021-11-08 8:26
 Started implementing functionality to view user contributions on their home page
+
+RengZ -- 2021-11-08 8:40
+Added new method to get first 30 characters of stories a user has contributed to.
