@@ -40,7 +40,7 @@ Added login functionality. Users can log in with a set username and password and
 juliaN -- 2021-11-02 23:40
 Check over repo for progress and ran demo to ensure functionality.
 
-IvanL -- 2021-11-03 8:21 Coded auth pages for register and login
+ivanL -- 2021-11-03 8:21 Coded auth pages for register and login
 
 juliaN -- 2021-11-03 8:33
 Removed landing page (name changed to index)
@@ -57,21 +57,30 @@ Slight speed optimization with list comprehension
 rengZ -- 2021-11-04 8:25
 Updated sitemap on design doc by including clearer headings.
 
-IvanL -- 2021-11-04 8:20 - Worked on the search page and search functionality
+ivanL -- 2021-11-04 8:20 - Worked on the search page and search functionality
+
+juliaN -- 2021-11-04 8:35
+Started connecting story database with HTML files
 
 michelleL -- 2021-11-04 8:36
 Updated __init__.py so that login functions are in the same app route. Updated templates and code so that users are directed to the right pages when they are logged in and when they are not.
 
-IvanL -- 2021-11-05 8:14 - Creating html home page to show stories that user contributed to.
+ivanL -- 2021-11-05 8:14 - Creating html home page to show stories that user contributed to.
 
-RengZ -- 2021-11-05 8:13
+rengZ -- 2021-11-05 8:13
 Added provisional flag and checked over launch codes.
 
-IvanL -- 2021-11-07 10:10
+juliaN -- 2021-11-05 8:24
+Worked on routing for each method in stories.py (temporary file), organized methods
+
+ivanL -- 2021-11-07 10:10
 Coded search page and search functionality
 
 michelle -- 2021-11-08 8:19
 Added wiki design page from my previous group.
+
+juliaN -- 2021-11-08 8:12
+Saved small changes to login and logut functions
 
 juliaN - 2021-11-08 8:26
 Started implementing functionality to view user contributions on their home page
