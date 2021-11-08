@@ -25,7 +25,6 @@ def login():
     If the user's username and password are correct, authenticate will redirect
     to home. Otherwise, it will display a error message. '''
 
-
     if 'username' in session:
         return redirect('/home') #users will not be able to log in again if they are already logged in.
     else:
@@ -56,7 +55,12 @@ def login_error(error_msg):
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
+    if request.method == 'POST':
+        r_username = request.form.get('Username')
+        r_password = request.form.get('password1')
+        user1.register(r_username, r_password)
     return render_template('register.html')
+
 
 
 @app.route('/home', methods=['GET', 'POST'])
