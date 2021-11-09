@@ -148,8 +148,6 @@ def search():
             data.append(l)
 
 
-    print(data)
-
     return render_template('search.html', fulldata = data)
 
 
