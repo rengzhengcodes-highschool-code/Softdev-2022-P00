@@ -92,3 +92,6 @@ Implemented functionality to view user contributions on their home page
 
 michelle -- 2021-11-09 6:54
 Implemented register method to add username and password to a created users database.
+
+michelle -- 2021-11-09 7:56
+Changed login method to use users database to see if username and password are correct. Users can now login using the login credentials they have registered.

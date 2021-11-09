@@ -52,18 +52,17 @@ def login():
     if 'username' in session:
         return redirect('/home') #users will not be able to log in again if they are already logged in.
     else:
-
         try:
             if request.method == 'POST':
                 username = request.form['username'] #from login.html
                 password = request.form['password']
                 result = user1.validate_login(username, password) #evaluates whether or not credentials are correct (if so, stores session data)
 
-                if result == 'true':
+                if result == True:
                     #action items for if user is able to login
                     return redirect(('/home'))
 
-                elif result == 'false':
+                elif result == False:
                     return login_error("Nope, this is wrong")
             else:
                 return login_error("") #returns empty string for now since login can be accessed by get method
@@ -92,7 +91,7 @@ def register():
                 return redirect('/home')
             else: #otherwise, return possible issues.
                 if r_password != r_password1:
-                    return reg_error("Your passwords must match.")
+                    return reg_error("Your passwords must match.") #todo: display both of both are true
                 else:
                     return reg_error("Username is already in use.")
         else:

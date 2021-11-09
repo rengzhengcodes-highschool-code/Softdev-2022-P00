@@ -25,11 +25,22 @@ class User :
     def validate_login(self, username, password):
         ''' validate_login will return true if username and password are correct
         and false otherwise '''
-        if (username == 'aaa' and password == 'pass'):
-            session[u_token] = username #stores u_token session data
-            return 'true'
+
+        #previous hardcoded username and password
+        # if (username == 'aaa' and password == 'pass'):
+        #     session[u_token] = username #stores u_token session data
+        #     return 'true'
+        # else:
+        #     return 'false'
+
+        command = f"SELECT username from users WHERE username='{username}' AND password = '{password}';"
+        self.c.execute(command) #finds data in db with matching username and password
+        print("hello")
+        if self.c.fetchone(): #if there exists a matching username and password, return true
+            session[u_token] = username #stores session data
+            return True
         else:
-            return 'false'
+            return False #if login credentials are false, return false
 
     def reg_error(self, error_msg):
         return render_template(
