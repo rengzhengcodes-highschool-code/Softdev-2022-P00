@@ -10,7 +10,7 @@ app.secret_key = os.urandom(32)
 user1 = User() #allows access to user class methods
 #logged in usernames are always redirected to home
 print(path.dirname(path.abspath(__file__)))
-db_file = path.dirname(path.abspath(__file__)) + "/test.db"
+db_file = "stories.db"
 sm = Story_manager(db_file)
 
 @app.route('/', methods=['GET', 'POST'])
