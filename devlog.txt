@@ -80,7 +80,7 @@ michelle -- 2021-11-08 8:19
 Added wiki design page from my previous group.
 
 juliaN -- 2021-11-08 8:12
-Saved small changes to login and logut functions
+Saved small changes to login and logout functions
 
 juliaN -- 2021-11-08 8:26
 Started implementing functionality to view user contributions on their home page
@@ -99,3 +99,6 @@ Changed login method to use users database to see if username and password are c
 
 rengZ -- 2021-11-09 8:18
 Cleaned up old files that were no longer in use + cleaned up story manager implementation. Added deconstructor to user.py
+
+michelleL -- 2021-11-09 8:25
+Fixed minor bug that prohibited user from logging out after registering.
