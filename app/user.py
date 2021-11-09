@@ -69,3 +69,7 @@ class User :
         '''gets the username and passwords logged into the database'''
         self.c.execute('SELECT * FROM users')
         return self.c.fetchall()
+
+    def __del__(self):
+        self.db.commit()
+        self.db.close()

@@ -10,24 +10,8 @@ app.secret_key = os.urandom(32)
 user1 = User() #allows access to user class methods
 #logged in usernames are always redirected to home
 print(path.dirname(path.abspath(__file__)))
-db_file = path.dirname(path.abspath(__file__)) + "/test.db"
-sm = None
-
-def purge():
-    global sm
-    global db_file
-    if path.exists(db_file):
-        return
-    else:
-        sm = Story_manager(db_file)
-
-purge()
-
-if path.exists(db_file):
-    remove(db_file) #makes sure none of previous test is there
-    sm = Story_manager(db_file)
-else:
-    sm = Story_manager(db_file)
+db_file = "stories.db"
+sm = Story_manager(db_file)
 
 @app.route('/', methods=['GET', 'POST'])
 def landing():
@@ -148,8 +132,6 @@ def search():
             l.append(sm.get_last_entry(x))
             data.append(l)
 
-
-    print(data)
 
     return render_template('search.html', fulldata = data)
 
