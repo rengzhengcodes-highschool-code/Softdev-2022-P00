@@ -18,7 +18,7 @@ class User :
     def logout(self):
         ''' If the user chooses to logout, session data will be deleted and
         the landing page template will be loaded (to be used in the landing page)'''
-        session.pop(u_token) #delete session data
+        session.pop(u_token)
         return render_template(index + '.html')
 
 
@@ -33,7 +33,7 @@ class User :
         # else:
         #     return 'false'
 
-        command = f"SELECT username from users WHERE username='{username}' AND password = '{password}';"
+        command = f"SELECT username from users WHERE username='{username}' AND password = '{password}'"
         self.c.execute(command) #finds data in db with matching username and password
         print("hello")
         if self.c.fetchone(): #if there exists a matching username and password, return true

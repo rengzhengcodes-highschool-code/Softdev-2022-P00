@@ -82,7 +82,8 @@ def register():
         return redirect('/home')
     try:
         if request.method == 'POST':
-            r_username = request.form.get('Username')
+            #r_username = request.form.get('Username')
+            r_username = request.form.get('username')
             r_password = request.form.get('password1')
             r_password1 = request.form.get('password2') #the second password field
             result = user1.register(r_username, r_password, r_password1) #checks to see if register is possible
