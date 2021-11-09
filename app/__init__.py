@@ -79,7 +79,35 @@ def login_error(error_msg):
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    if 'username' in session: #only non logged in users can access register
+        return redirect('/home')
+    try:
+        if request.method == 'POST':
+            r_username = request.form.get('Username')
+            r_password = request.form.get('password1')
+            r_password1 = request.form.get('password2') #the second password field
+            result = user1.register(r_username, r_password, r_password1) #checks to see if register is possible
+            if result == True: #if possible, redirect to home page.
+                #print(user1.get_users())
+                return redirect('/home')
+            else: #otherwise, return possible issues.
+                if r_password != r_password1:
+                    return reg_error("Your passwords must match.")
+                else:
+                    return reg_error("Username is already in use.")
+        else:
+            return reg_error("") #currently empty string
+    except:
+        return reg_error("Unknown error occurred. Try again.") #something weird happened
+
+
+def reg_error(error_msg):
+    '''render register template so that it shows register status'''
+    return render_template(
+        'register.html',
+        reg_status = error_msg
+    )
+
 
 
 @app.route('/home', methods=['GET', 'POST'])
@@ -91,7 +119,7 @@ def disp_home():
         return render_template(
             'home.html',
             username = session['username'],
-            collection = get_story_starts('username')
+            collection = sm.get_story_starts('username')
         )
     else:
         return redirect('/')

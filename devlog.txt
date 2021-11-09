@@ -89,3 +89,6 @@ Added new method to get first 30 characters of stories a user has contributed to
 
 juliaN -- 2021-11-08 8:41
 Implemented functionality to view user contributions on their home page
+
+michelle -- 2021-11-09 6:54
+Implemented register method to add username and password to a created users database.
