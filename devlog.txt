@@ -102,3 +102,6 @@ Cleaned up old files that were no longer in use + cleaned up story manager imple
 
 michelleL -- 2021-11-09 8:25
 Fixed minor bug that prohibited user from logging out after registering.
+
+ivanL -- 2021-11-09 8:26
+Coded several story input and story edit pages.
