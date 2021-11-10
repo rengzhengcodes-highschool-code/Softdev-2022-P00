@@ -207,7 +207,8 @@ def test_user_contributions(num:int = 100, seed:int = 42):
 	return True
 
 def test_story_getter(num:int = 100, seed:int = 42):
-	random.seed(42)
+	print("___ story getter test ___")
+	random.seed(seed)
 	# multiple tests
 	for i in range(num):
 		#creates story
@@ -230,6 +231,34 @@ def test_story_getter(num:int = 100, seed:int = 42):
 			return False
 	return True
 
+def test_get_story_starts(num:int = 100, seed:int = 42):
+	print("___ story starts test ___")
+	random.seed(seed)
+	for i in range(num):
+		#creates story
+		story = f"story{i}"
+		text = f"starter{i}\n\n\t"
+		sm.create_story(f"admin{i}", story, f"starter{i}")
+
+		for j in range(num):
+			#generates absurd values
+			value = random.getrandbits(8 * random.randint(1, 3))
+			sm.insert_entry(f"user{j}", story, value)
+			text += f"{value}\n\n\t"
+
+		text.rstrip() #removes whitespace
+		text = text[0:30]
+
+		expected = {story: text}
+		#checks return is correct
+		if expected != sm.get_story_starts(f"admin{i}"):
+			print(expected)
+			print("---")
+			print(sm.get_story_starts(f"admin{i}"))
+			return False
+
+	return True
+
 success = True
 success = success and test_creation()
 purge()
@@ -240,6 +269,8 @@ purge()
 success = success and test_user_contributions()
 purge()
 success = success and test_story_getter()
+purge()
+success = success and test_get_story_starts()
 
 if success:
 	print("Success")

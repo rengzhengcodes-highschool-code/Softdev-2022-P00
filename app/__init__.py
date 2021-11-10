@@ -10,24 +10,8 @@ app.secret_key = os.urandom(32)
 user1 = User() #allows access to user class methods
 #logged in usernames are always redirected to home
 print(path.dirname(path.abspath(__file__)))
-db_file = path.dirname(path.abspath(__file__)) + "/test.db"
-sm = None
-
-def purge():
-    global sm
-    global db_file
-    if path.exists(db_file):
-        return
-    else:
-        sm = Story_manager(db_file)
-
-purge()
-
-if path.exists(db_file):
-    remove(db_file) #makes sure none of previous test is there
-    sm = Story_manager(db_file)
-else:
-    sm = Story_manager(db_file)
+db_file = "stories.db"
+sm = Story_manager(db_file)
 
 @app.route('/', methods=['GET', 'POST'])
 def landing():
@@ -51,38 +35,65 @@ def login():
     if 'username' in session:
         return redirect('/home') #users will not be able to log in again if they are already logged in.
     else:
-
         try:
             if request.method == 'POST':
                 username = request.form['username'] #from login.html
                 password = request.form['password']
                 result = user1.validate_login(username, password) #evaluates whether or not credentials are correct (if so, stores session data)
 
-                if result == 'true':
+                if result == True:
                     #action items for if user is able to login
-                    return redirect(('/home'))
+                    return redirect('/home')
 
-                elif result == 'false':
-                    return login_error("Nope, this is wrong")
+                elif result == False:
+                    return login_error("Invalid username and password. Try again.")
             else:
-                return login_error("") #returns empty string for now since login can be accessed by get method
+                return render_template(
+                    'login.html'
+                )
         except:
-            return login_error("unknown error occured. try again")
+            return login_error("Unknown error occured. Try again.")
 
 def login_error(error_msg):
+    ''' displays the login error on the login page '''
     return render_template(
         'login.html',
         login_status = error_msg
     )
 
 
-@app.route("/signup", methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        r_username = request.form.get('Username')
-        r_password = request.form.get('password1')
-        user1.register(r_username, r_password)
-    return render_template('register.html')
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    if 'username' in session: #only non logged in users can access register
+        return redirect('/home')
+    try:
+        if request.method == 'POST':
+            r_username = request.form.get('username')
+            r_password = request.form.get('password1')
+            r_password1 = request.form.get('password2') #the second password field
+            result = user1.register(r_username, r_password, r_password1) #checks to see if register is possible
+            if result == True: #if possible, redirect to home page.
+                return redirect('/home')
+            else: #otherwise, return possible issues.
+                if r_password != r_password1:
+                    return reg_error("Your passwords must match.") #todo: display both of both are true
+                else:
+                    return reg_error("Username is already in use.")
+        else:
+            return render_template(
+                'register.html'
+            )
+    except:
+        return reg_error("Unknown error occurred. Try again.") #something weird happened
+
+
+def reg_error(error_msg):
+    ''' render register template so that it shows register status '''
+    return render_template(
+        'register.html',
+        reg_status = error_msg
+    )
+
 
 
 
@@ -91,24 +102,26 @@ def disp_home():
     ''' If user is logged in, will display home. Otherwise, it will display landing
     page'''
     if 'username' in session: #user is only able to access the home page if they are logged in, otherwise, they will be redirected to landing
+    # need command from story manager
         return render_template(
             'home.html',
-            username = session['username']
+            username = session['username'],
+            collection = sm.get_story_starts('username')
         )
     else:
         return redirect('/')
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    try:
+    '''try:
         sm.create_story("admin", "test", "starter")
     except:
-        print(sm.get_catalog())
+        print(sm.get_catalog())'''
 
     data = []
 
     search = request.args.get('search')
-    if search != "":
+    if search is not None:
         for x in sm.get_catalog():
             if x.__contains__(search):
                 l = []
@@ -123,8 +136,6 @@ def search():
             data.append(l)
 
 
-    print(data)
-        
     return render_template('search.html', fulldata = data)
 
 
