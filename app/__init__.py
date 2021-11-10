@@ -44,16 +44,19 @@ def login():
 
                 if result == True:
                     #action items for if user is able to login
-                    return redirect(('/home'))
+                    return redirect('/home')
 
                 elif result == False:
-                    return login_error("Nope, this is wrong")
+                    return login_error("Invalid username and password. Try again.")
             else:
-                return login_error("") #returns empty string for now since login can be accessed by get method
+                return render_template(
+                    'login.html'
+                )
         except:
-            return login_error("unknown error occured. try again")
+            return login_error("Unknown error occured. Try again.")
 
 def login_error(error_msg):
+    ''' displays the login error on the login page '''
     return render_template(
         'login.html',
         login_status = error_msg
@@ -66,13 +69,11 @@ def register():
         return redirect('/home')
     try:
         if request.method == 'POST':
-            #r_username = request.form.get('Username')
             r_username = request.form.get('username')
             r_password = request.form.get('password1')
             r_password1 = request.form.get('password2') #the second password field
             result = user1.register(r_username, r_password, r_password1) #checks to see if register is possible
             if result == True: #if possible, redirect to home page.
-                #print(user1.get_users())
                 return redirect('/home')
             else: #otherwise, return possible issues.
                 if r_password != r_password1:
@@ -80,13 +81,15 @@ def register():
                 else:
                     return reg_error("Username is already in use.")
         else:
-            return reg_error("") #currently empty string
+            return render_template(
+                'register.html'
+            )
     except:
         return reg_error("Unknown error occurred. Try again.") #something weird happened
 
 
 def reg_error(error_msg):
-    '''render register template so that it shows register status'''
+    ''' render register template so that it shows register status '''
     return render_template(
         'register.html',
         reg_status = error_msg
