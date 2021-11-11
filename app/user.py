@@ -63,6 +63,9 @@ class User :
         self.c.execute('SELECT * FROM users')
         return self.c.fetchall()
 
+    # def getName(self):
+    #     return session[u_token]
+
     def __del__(self):
         self.db.commit()
         self.db.close()

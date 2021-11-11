@@ -108,3 +108,12 @@ Coded several story input and story edit pages.
 
 michelleL -- 2021-11-10 2:37
 Updated html page and login functions for consistency and formatting.
+
+juliaN -- 2021-11-11 13:24
+Fixed up templates, added necessary buttons
+
+juliaN - 2021-11-11 13:53
+Ensured that the user is redirected to the home page if they try to reach the index page when logged in
+
+juliaN - 2021-11-11 1:56
+Added back button to search

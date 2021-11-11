@@ -5,6 +5,8 @@
 	<title></title>
 </head>
 <body>
+	<h1>Search Page</h1>
+	<h2>{{heading}}</h2>
 <div>
 	<form action="" class="search-bar" method="GET">
 		<input type="search" name="search" placeholder="Search For Stories" style="height:35px;">
@@ -21,7 +23,7 @@
 {% for row in fulldata %}
 
 <tr>
-	<th>{{row[1][1]}}</th>
+	<th><a href="{{ url_for('story', storyID = row[1][1]) }}">{{row[1][1]}}</th>
 	<th>{{row[1][2]}}</th>
 </tr>
 
@@ -29,6 +31,8 @@
 
 
 </TABLE>
+
+<button type="back" class="btn_btn-primary" onclick="history.back()">Back</button>
 
 </body>
 </html>
