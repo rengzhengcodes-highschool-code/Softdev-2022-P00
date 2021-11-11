@@ -4,15 +4,16 @@
 
   </head>
 
-  <h1>
-    login page
-  </h1>
+  <body>
+    <h1>Login Page</h1>
+  	<h2>{{heading}}</h2>
   <form action='/login' method='POST'>
     <p>Username: <br></p>
     <input type='text' name='username'><br>
     <p>Password: <br></p>
     <input type='password' name='password'><br><br>
     <input type='submit' name='sub1'>
+    <button type="back" class="btn_btn-primary">Back</button>
   </form>
 
   <p>
@@ -20,7 +21,6 @@
     {{login_status}}
 
   </p>
-
-
+</body>
 
 </html>
