@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session
-import sqlite3
+import sqlite3, hashlib
 
 
 index = 'index' # index/landing page
@@ -26,7 +26,10 @@ class User :
     def validate_login(self, username, password):
         ''' validate_login will return true if username and password are correct
         and false otherwise '''
+        #password = password.encode()
+        #hash_pass = hashlib.sha512(password).hexdigest()
 
+        #command = f"SELECT username from users WHERE username='{username}' AND password = '{hash_pass}'"
         command = f"SELECT username from users WHERE username='{username}' AND password = '{password}'"
         self.c.execute(command) #finds data in db with matching username and password
         if self.c.fetchone(): #if there exists a matching username and password, return true
@@ -39,16 +42,21 @@ class User :
         ''' register will check if the given credentials are valid (no username
         duplicates and matching passwords). If valid, register will insert the given
         username and password in the database '''
+
         try:
             if password != password1: #password in the first field and password in second field must match.
                 return False
             else:
+                #password = password.encode()
+                #hash_pass = hashlib.sha512(password).hexdigest()
+                #self.c.execute('INSERT INTO users VALUES (?, ?)', (username, hash_pass)) #insert usernamee and pass in db if valid
                 self.c.execute('INSERT INTO users VALUES (?, ?)', (username, password)) #insert usernamee and pass in db if valid
                 session[u_token] = username #store session data
                 self.db.commit()
                 return True
         except:
             return False #occurs when the username is a duplicate
+
 
     def get_users(self):
         '''gets the username and passwords logged into the database (for testing purposes)'''

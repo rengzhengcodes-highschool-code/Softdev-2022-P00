@@ -67,7 +67,8 @@ def login_error(error_msg):
 def register():
     if 'username' in session: #only non logged in users can access register
         return redirect('/home')
-    try:
+    else:
+    #try:
         if request.method == 'POST':
             r_username = request.form.get('username')
             r_password = request.form.get('password1')
@@ -84,8 +85,8 @@ def register():
             return render_template(
                 'register.html'
             )
-    except:
-        return reg_error("Unknown error occurred. Try again.") #something weird happened
+    #except:
+        #return reg_error("Unknown error occurred. Try again.") #something weird happened
 
 
 def reg_error(error_msg):
