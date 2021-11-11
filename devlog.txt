@@ -108,3 +108,6 @@ Coded several story input and story edit pages.
 
 michelleL -- 2021-11-10 2:37
 Updated html page and login functions for consistency and formatting.
+
+juliaN -- 2021-11-11 13:24
+Fixed up templates, added necessary buttons
