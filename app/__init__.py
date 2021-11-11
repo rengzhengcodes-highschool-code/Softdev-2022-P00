@@ -17,9 +17,10 @@ header = "Team O Tree - Renggeng Zheng, Ivan Lam, Julia Nelson, and Michelle Lo"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        return user1.logout() #if the user chooses to log out, render index page.
-    return render_template('index.html', heading=header)
+    if 'username' in session:
+        return render_template('home.html', heading=header)
+    else:
+        return render_template('index.html', heading=header)
 
 @app.route('/login', methods=['GET', 'POST'])
 
@@ -29,7 +30,7 @@ def login():
     to home. Otherwise, it will display a error message. '''
     try:
         if request.method == 'POST':
-            
+
             username = request.form['username'] #from login.html
             password = request.form['password']
             result = user1.validate_login(username, password) #evaluates whether or not credentials are correct (if so, stores session data)
