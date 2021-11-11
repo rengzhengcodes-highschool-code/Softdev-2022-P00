@@ -98,6 +98,11 @@ def disp_home():
     page'''
     if 'username' in session: #user is only able to access the home page if they are logged in, otherwise, they will be redirected to landing
     # need command from story manager
+        if request.method == 'POST':
+            if 'logout' in request.form:
+                redirect('/')
+            if 'new' in request.form:
+                redirect('/story/new')            
         return render_template(
             'home.html',
             username = session['username'],
@@ -154,8 +159,11 @@ def edit(storyID):
         print(contribution)
         return redirect(url_for('story', storyID=storyID))
     else:
-        return render_template("editStory.html", data=sm.get_story(storyID))
+        return render_template("editStory.html", data=sm.get_story(storyID), heading=header)
 
+@app.route('/story/new')
+def new():
+    return render_template("newStory.html", heading=header)
 
 
 
