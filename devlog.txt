@@ -117,3 +117,6 @@ Ensured that the user is redirected to the home page if they try to reach the in
 
 juliaN - 2021-11-11 1:56
 Added back button to search
+
+juliaN - 2021-11-11 17:20
+Tried to fix routing for buttons
