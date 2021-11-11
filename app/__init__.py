@@ -23,7 +23,6 @@ def index():
         return render_template('index.html', heading=header)
 
 @app.route('/login', methods=['GET', 'POST'])
-
 def login():
     ''' If user tries to login, authenticate will validate the user's credentials.
     If the user's username and password are correct, authenticate will redirect
@@ -157,13 +156,20 @@ def edit(storyID):
     if request.method == 'POST':
         contribution = request.form.get('contribution')
         sm.insert_entry(session['username'], storyID, contribution)
-        print(contribution)
         return redirect(url_for('story', storyID=storyID))
     else:
         return render_template("editStory.html", data=sm.get_story(storyID), heading=header)
 
-@app.route('/story/new')
-def new():
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    if 'username' not in session:
+        return redirect(url_for("login"))
+    if request.method == 'POST':
+        title = request.form.get('title')
+        first = request.form.get('firstContribute')
+        name = session['username']
+        sm.create_story(name, title, first)
+        return redirect(url_for('search'))
     return render_template("newStory.html", heading=header)
 
 
