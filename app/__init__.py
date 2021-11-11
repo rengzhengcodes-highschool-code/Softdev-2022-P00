@@ -131,9 +131,20 @@ def search():
             l.append(x)
             l.append(sm.get_last_entry(x))
             data.append(l)
+            # sm.insert_entry(user1.getName(), x, "stuff")
+    print(sm.get_user_contributions(user1.getName()))
 
 
     return render_template('search.html', fulldata = data)
+
+@app.route('/story/<storyID>', methods=['GET', 'POST'])
+def story(storyID):
+    if 'username' in session:
+        return redirect(url_for("/login"))
+    if (storyID in sm.get_user_contributions(user1.getName())):
+        return render_template("viewStory.html", data = sm.get_story(storyID), edit = False)
+    else:
+        return render_template("viewStory.html", data = sm.get_last_entry(storyID), edit = True)
 
 
 if __name__ == '__main__': #false if this file imported as module
