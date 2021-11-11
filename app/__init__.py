@@ -17,10 +17,18 @@ header = "Team O Tree - Renggeng Zheng, Ivan Lam, Julia Nelson, and Michelle Lo"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if 'username' in session:
-        return render_template('home.html', heading=header)
+    if request.method == 'POST':
+        return user1.logout()
     else:
-        return render_template('index.html', heading=header)
+        if 'username' in session:
+            return redirect('/home')
+        else:
+            return render_template('index.html', heading=header)
+
+    # if 'username' in session:
+    #     return render_template('home.html', heading=header)
+    # else:
+    #     return render_template('index.html', heading=header)
 
 @app.route('/login', methods=['GET', 'POST'])
 
@@ -103,7 +111,7 @@ def disp_home():
             if 'logout' in request.form:
                 redirect('/')
             if 'new' in request.form:
-                redirect('/story/new')            
+                redirect('/story/new')
         return render_template(
             'home.html',
             username = session['username'],
