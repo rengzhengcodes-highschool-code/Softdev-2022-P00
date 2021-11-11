@@ -17,10 +17,9 @@ header = "Team O Tree - Renggeng Zheng, Ivan Lam, Julia Nelson, and Michelle Lo"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html', heading=header)
-
     if request.method == 'POST':
         return user1.logout() #if the user chooses to log out, render index page.
+    return render_template('index.html', heading=header)
 
 @app.route('/login', methods=['GET', 'POST'])
 
