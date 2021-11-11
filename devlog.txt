@@ -105,3 +105,6 @@ Fixed minor bug that prohibited user from logging out after registering.
 
 ivanL -- 2021-11-09 8:26
 Coded several story input and story edit pages.
+
+michelleL -- 2021-11-10 2:37
+Updated html page and login functions for consistency and formatting.
