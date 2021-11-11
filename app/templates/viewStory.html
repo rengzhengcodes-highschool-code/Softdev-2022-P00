@@ -6,6 +6,13 @@
 	<title></title>
 </head>
 <body>
-<p> {{ data }}
+<p> 
+	{{ data }} 
+	<br>
+	{% if edit %}
+	<a href="{{ url_for('edit', storyID = storyID) }}"><button>Add contribution	</button></a>
+	{% endif %}
+</p>
+
 </body>
 </html>
