@@ -144,3 +144,6 @@ Added to home.html
 
 juliaN - 2021-11-11 22:00
 Fixed button on search page
+
+rengZ - 2021-11-11 22:28
+Rendered whitespace in html. Finished testing. Lights green on everything as far as I can tell.
