@@ -8,7 +8,7 @@ from story_manager import Story_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 user1 = User() #allows access to user class methods
-print(path.dirname(path.abspath(__file__)))
+# print(path.dirname(path.abspath(__file__)))
 db_file = "stories.db"
 sm = Story_manager(db_file)
 
