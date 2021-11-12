@@ -147,3 +147,6 @@ Fixed button on search page
 
 rengZ - 2021-11-11 22:28
 Rendered whitespace in html. Finished testing. Lights green on everything as far as I can tell.
+
+michelleL - 2021-11-12 05:29
+Minor adjustments: fixed formatting of error message on newStory.html, users that are not logged in will be redirected to index page if they attempt to access story pages.

@@ -131,7 +131,7 @@ def search():
 @app.route('/story/<storyID>', methods=['GET', 'POST'])
 def story(storyID):
     if 'username' not in session:
-        return redirect(url_for("login"))
+        return redirect(url_for("index"))
     if (storyID in sm.get_user_contributions(session['username'])):
         return render_template("viewStory.html", data = sm.get_story(storyID), edit = False, heading=header)
     else:
@@ -140,7 +140,7 @@ def story(storyID):
 @app.route('/edit/<storyID>', methods=['GET', 'POST'])
 def edit(storyID):
     if 'username' not in session:
-        return redirect(url_for("login"))
+        return redirect(url_for("index"))
     if request.method == 'POST':
         contribution = request.form.get('contribution')
         sm.insert_entry(session['username'], storyID, contribution)
@@ -151,7 +151,7 @@ def edit(storyID):
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if 'username' not in session:
-        return redirect(url_for("login"))
+        return redirect(url_for("index"))
     if request.method == 'POST':
         title = request.form.get('title')
         first = request.form.get('firstContribute')
@@ -160,7 +160,7 @@ def add():
              sm.create_story(name, title, first)
              return redirect(url_for('search'))
         except:
-            return err_msg('newStory.html', "The story title is the same as another existing story. Use a different title.")#add_error("The story title is the same as another existing story. Use a different title.")
+            return err_msg('newStory.html', "The story title is the same as another existing story. Use a different title.")
     else:
         return render_template("newStory.html", heading=header)
 
