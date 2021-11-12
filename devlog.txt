@@ -127,6 +127,9 @@ Fixed bug that prevented user from logging out.
 rengZ - 2021-11-11 19:06
 Removed extraneous files + fstring fixes.
 
+ivanL - 2021-11-11 19:20
+Coded add story page and add story functionality
+
 michelleL - 2021-11-11 20:10
 Added error message that would be displayed when user attempts to create a story with an already existing title (through err_msg). Made minor formatting changes.
 
@@ -135,6 +138,9 @@ Made minor changes to pages wording and look.
 
 juliaN - 2021-11-11 21:33
 Added back buttons to all story pages
+
+ivanL - 2021-11-11 21:40
+Added list of story that user edited in home page with hyperlink to the story page
 
 juliaN - 2021-11-11 21:50
 Changed buttons for all stories so that they can redirect to both home and search
