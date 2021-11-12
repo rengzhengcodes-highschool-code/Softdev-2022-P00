@@ -30,8 +30,7 @@ class User :
         #hash_pass = hashlib.sha512(password).hexdigest()
 
         #command = f"SELECT username from users WHERE username='{username}' AND password = '{hash_pass}'"
-        command = f"SELECT username from users WHERE username='{username}' AND password = '{password}'"
-        self.c.execute(command) #finds data in db with matching username and password
+        self.c.execute("SELECT username from users WHERE username=? AND password=?", (username, password)) #finds data in db with matching username and password
         if self.c.fetchone(): #if there exists a matching username and password, return true
             session[u_token] = username #stores session data
             return True
