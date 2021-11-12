@@ -141,3 +141,6 @@ Changed buttons for all stories so that they can redirect to both home and searc
 
 juliaN - 2021-11-11 21:58
 Added to home.html
+
+juliaN - 2021-11-11 22:00
+Fixed button on search page
