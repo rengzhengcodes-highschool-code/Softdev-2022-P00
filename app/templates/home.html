@@ -17,20 +17,23 @@
     </form>
   </p>
 
+<a href="add"><button type="new" class="btn_btn-primary">Create New Story</button></a>
+<a href="search"><button type="search" class="btn_btn-primary">Search</button></a>
+<br>
   <div>
     <table>
-    {% for row in collection %}
-
-
-      <tr>row[1]</tr>
-
-
-    {% endfor %}
+      {% for dict_item in collection %}
+         {% for key, value in dict_item.items() %}
+         <tr>
+          <th><a href="{{ url_for('story', storyID = key) }}">{{ key }}</a></th>
+          <th>{{ value }}</th>
+         </tr>
+         {% endfor %}
+      {% endfor %}
     </table>
   </div>
 
-  <a href="add"><button type="new" class="btn_btn-primary">Create New Story</button></a>
-  <a href="search"><button type="search" class="btn_btn-primary">Search</button></a>
+  
 </body>
 
 

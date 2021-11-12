@@ -111,12 +111,8 @@ def disp_home():
                 redirect('/')
             if 'new' in request.form:
                 redirect('/story/new')
-        return render_template(
-            'home.html',
-            username = session['username'],
-            collection = sm.get_story_starts('username'),
-            heading=header
-        )
+        print(sm.get_story_starts(session['username']))
+        return render_template( 'home.html', username = session['username'], collection = [sm.get_story_starts(session['username'])], heading=header)
     else:
         return redirect('/')
 
@@ -144,7 +140,6 @@ def search():
             l.append(sm.get_last_entry(x))
             data.append(l)
             # sm.insert_entry(user1.getName(), x, "stuff")
-
 
     return render_template('search.html', fulldata = data, heading=header)
 
@@ -177,7 +172,7 @@ def add():
         first = request.form.get('firstContribute')
         name = session['username']
         sm.create_story(name, title, first)
-        return redirect(url_for('search'))
+        return redirect(url_for('index'))
     return render_template("newStory.html", heading=header)
 
 
