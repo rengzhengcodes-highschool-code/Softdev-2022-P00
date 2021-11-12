@@ -15,6 +15,7 @@
 	<a href="{{ url_for('edit', storyID = storyID) }}"><button>Add contribution	</button></a>
 	{% endif %}
 </p>
-<button type="back" class="btn_btn-primary" onclick="history.back()">Back</button>
+<a href="{{ url_for('disp_home') }}"><button type="home">Home</button></a>
+<a href="{{ url_for('search') }}"><button type="search">Search</button></a>
 </body>
 </html>
