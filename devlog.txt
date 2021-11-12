@@ -139,4 +139,5 @@ Added back buttons to all story pages
 juliaN - 2021-11-11 21:50
 Changed buttons for all stories so that they can redirect to both home and search
 
-juliaN - 2021-11-11 21:53
+juliaN - 2021-11-11 21:58
+Added to home.html
