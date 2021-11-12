@@ -96,7 +96,6 @@ def disp_home():
                 redirect('/')
             if 'new' in request.form:
                 redirect('/story/new')
-        print(sm.get_story_starts(session['username']))
         return render_template( 'home.html', username = session['username'], collection = [sm.get_story_starts(session['username'])], heading=header)
     else:
         return redirect('/')
