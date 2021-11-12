@@ -8,7 +8,6 @@ from story_manager import Story_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 user1 = User() #allows access to user class methods
-#logged in usernames are always redirected to home
 print(path.dirname(path.abspath(__file__)))
 db_file = "stories.db"
 sm = Story_manager(db_file)
@@ -18,23 +17,20 @@ header = "Team O Tree - Renggeng Zheng, Ivan Lam, Julia Nelson, and Michelle Lo"
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        return user1.logout()
+        return user1.logout() #will log out the user
     else:
         if 'username' in session:
-            return redirect('/home')
+            return redirect('/home') #users already logged in will be redirected to home
         else:
-            return render_template('index.html', heading=header)
-
-    # if 'username' in session:
-    #     return render_template('home.html', heading=header)
-    # else:
-    #     return render_template('index.html', heading=header)
+            return render_template('index.html', heading=header) #users not logged in will be redirected home
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     ''' If user tries to login, authenticate will validate the user's credentials.
     If the user's username and password are correct, authenticate will redirect
     to home. Otherwise, it will display a error message. '''
+    if 'username' in session:
+        return redirect('/home')
     try:
         if request.method == 'POST':
 
@@ -43,25 +39,16 @@ def login():
             result = user1.validate_login(username, password) #evaluates whether or not credentials are correct (if so, stores session data)
 
             if result == True:
-                #action items for if user is able to login
                 return redirect('/home')
 
             elif result == False:
-                return login_error("Invalid username and password. Try again.")
+                return err_msg('login.html', "Invalid username and password. Try again.")
         else:
             return render_template(
                 'login.html', heading=header
             )
     except:
-        return login_error("Unknown error occured. Try again.")
-
-def login_error(error_msg):
-    ''' displays the login error on the login page '''
-    return render_template(
-        'login.html',
-        login_status = error_msg,
-        heading=header
-    )
+        return err_msg('login.html', "Unknown error occured. Try again.")
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -69,25 +56,25 @@ def register():
     if 'username' in session: #only non logged in users can access register
         return redirect('/home')
     else:
-    #try:
-        if request.method == 'POST':
-            r_username = request.form.get('username')
-            r_password = request.form.get('password1')
-            r_password1 = request.form.get('password2') #the second password field
-            result = user1.register(r_username, r_password, r_password1) #checks to see if register is possible
-            if result == True: #if possible, redirect to home page.
-                return redirect('/home')
-            else: #otherwise, return possible issues.
-                if r_password != r_password1:
-                    return reg_error("Your passwords must match.") #todo: display both of both are true
-                else:
-                    return reg_error("Username is already in use.")
-        else:
-            return render_template(
-                'register.html', heading=header
-            )
-    #except:
-        #return reg_error("Unknown error occurred. Try again.") #something weird happened
+        try:
+            if request.method == 'POST':
+                r_username = request.form.get('username')
+                r_password = request.form.get('password1')
+                r_password1 = request.form.get('password2') #the second password field
+                result = user1.register(r_username, r_password, r_password1) #checks to see if register is possible
+                if result == True: #if possible, redirect to home page.
+                    return redirect('/home')
+                else: #otherwise, return possible issues.
+                    if r_password != r_password1:
+                        return err_msg('register.html', "Your passwords must match.")
+                    else:
+                        return err_msg('register.html', "Username is already in use.")
+            else:
+                return render_template(
+                    'register.html', heading=header
+                )
+        except:
+            return err_msg('register.html', "Unknown error occurred. Try again.") #something weird happened
 
 
 def reg_error(error_msg):
@@ -97,8 +84,6 @@ def reg_error(error_msg):
         reg_status = error_msg,
         heading=header
     )
-
-
 
 @app.route('/home', methods=['GET', 'POST'])
 def disp_home():
@@ -176,9 +161,22 @@ def add():
         title = request.form.get('title')
         first = request.form.get('firstContribute')
         name = session['username']
-        sm.create_story(name, title, first)
-        return redirect(url_for('search'))
-    return render_template("newStory.html", heading=header)
+        try:
+             sm.create_story(name, title, first)
+             return redirect(url_for('search'))
+        except:
+            return err_msg('newStory.html', "The story title is the same as another existing story. Use a different title.")#add_error("The story title is the same as another existing story. Use a different title.")
+    else:
+        return render_template("newStory.html", heading=header)
+
+
+def err_msg(page, error_msg):
+    ''' displays an error message on the desired page '''
+    return render_template(
+        page,
+        heading=header,
+        status = error_msg
+    )
 
 
 

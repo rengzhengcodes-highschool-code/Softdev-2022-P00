@@ -121,5 +121,11 @@ Added back button to search
 juliaN - 2021-11-11 17:20
 Tried to fix routing for buttons
 
-RengZ - 2021-11-11 19:06
+michelleL - 2021-11-11 18:30
+Fixed bug that prevented user from logging out.
+
+rengZ - 2021-11-11 19:06
 Removed extraneous files + fstring fixes. 
+
+michelleL - 2021-11-11 20:10
+Added error message that would be displayed when user attempts to create a story with an already existing title (through err_msg). Made minor formatting changes.
