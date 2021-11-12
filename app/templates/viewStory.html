@@ -8,13 +8,13 @@
 <body>
 <h1>Story Page</h1>
 <h2>{{heading}}</h2>
-<p> 	
+<p>
 	{{ data }}
 	<br>
 	{% if edit %}
 	<a href="{{ url_for('edit', storyID = storyID) }}"><button>Add contribution	</button></a>
 	{% endif %}
 </p>
-
+<button type="back" class="btn_btn-primary" onclick="history.back()">Back</button>
 </body>
 </html>
